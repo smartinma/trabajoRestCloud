@@ -1,0 +1,5 @@
+create=Will be created a new recipe with name:
+delete=Will be deleted a recipe with name:
+update=Will be updated a recipe with name:
+cached=Cached value
+notCached=Not cached value
