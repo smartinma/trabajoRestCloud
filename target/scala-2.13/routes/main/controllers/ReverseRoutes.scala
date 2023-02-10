@@ -32,28 +32,70 @@ package controllers {
     }
 
   
-    // @LINE:19
-    def retrieve(id:Integer): Call = {
+    // @LINE:34
+    def retrieveAllByIngredient(ingredient:String): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "recipe/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)))
+      Call("GET", _prefix + { _defaultPrefix } + "recipes/ingredient/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("ingredient", ingredient)))
     }
   
-    // @LINE:29
+    // @LINE:64
+    def valorateRecipe(id:Integer, point:Integer): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "recipe/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)) + "/point/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("point", point)))
+    }
+  
+    // @LINE:39
+    def retrieveAllByTime(time:Integer): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "recipes/time/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("time", time)))
+    }
+  
+    // @LINE:59
     def delete(id:Integer): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "recipe/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)))
     }
   
-    // @LINE:24
+    // @LINE:44
+    def retrieveByTitle(title:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "recipe/title/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("title", title)))
+    }
+  
+    // @LINE:54
     def update(id:Integer): Call = {
       
       Call("PUT", _prefix + { _defaultPrefix } + "recipe/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)))
     }
   
-    // @LINE:34
+    // @LINE:24
+    def retrieveAllByType(typeFood:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "recipes/type/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("typeFood", typeFood)))
+    }
+  
+    // @LINE:74
     def retrieveAll(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "recipes")
+    }
+  
+    // @LINE:49
+    def retrieveAllByValoration(point:Integer): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "recipe/puntuation/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("point", point)))
+    }
+  
+    // @LINE:29
+    def retrieveAllByName(name:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "recipes/name/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("name", name)))
+    }
+  
+    // @LINE:19
+    def retrieveById(id:Integer): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "recipe/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)))
     }
   
     // @LINE:14
@@ -64,14 +106,14 @@ package controllers {
   
   }
 
-  // @LINE:39
+  // @LINE:79
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:39
+    // @LINE:79
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))

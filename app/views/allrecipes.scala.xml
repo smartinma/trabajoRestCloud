@@ -1,0 +1,7 @@
+@(receta: List[RecipeModel])
+<?xml version="1.0" encoding="UTF-8" ?>
+<allrecipes>
+    @for(r <- receta){
+        @recipe(r.name, r.time, r.title.title, r.typeFood)
+    }
+</allrecipes>
