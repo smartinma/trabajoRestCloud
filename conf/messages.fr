@@ -1,0 +1,5 @@
+create=La recette nommée sera créée:
+delete=La recette nommée sera supprimée:
+update=La recette nommée sera modifiée:
+cached=Valeur en cache
+notCached=Valeur non mise en cache
