@@ -1,32 +1,32 @@
 package views;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import models.RecipeModel;
-import models.RecipePassword;
+import models.RecipeValoration;
 import play.data.validation.Constraints;
 
-import javax.validation.constraints.NotBlank;
-
 public class RecipeInputResource extends RecipeResource {
-    @Constraints.Required
-    @NotBlank
-    @Constraints.MinLength(8)
-    private String password;
 
-    public String getPassword() {
-        return password;
+    @Constraints.Min(0)
+    @Constraints.Max(5)
+    @JsonProperty("puntuation")
+    private Integer puntuation;
+
+    public Integer getPuntuation() {
+        return puntuation;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPuntuation(Integer puntuation) {
+        this.puntuation = puntuation;
     }
 
     @Override
     public RecipeModel toModel() {
         RecipeModel u = super.toModel();
-        RecipePassword up = new RecipePassword();
+        RecipeValoration up = new RecipeValoration();
 
-        up.setPasswordHash(this.password);
-        u.addPassword(up);
+        up.setPuntuation(this.puntuation);
+        u.addValoration(up);
 
 
         return u;

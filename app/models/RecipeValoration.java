@@ -1,19 +1,21 @@
 package models;
 
 import io.ebean.Model;
+import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class RecipePassword extends Model {
+public class RecipeValoration extends Model {
 
 
-    @ManyToOne
-    private RecipeModel parentRecipe;
+    @ManyToOne()
+    public RecipeModel parentRecipe;
 
-    private String passwordHash;
+    public Integer puntuation;
 
     @Id
     private Long id;
@@ -29,16 +31,15 @@ public class RecipePassword extends Model {
     public RecipeModel getParentRecipe() {
         return parentRecipe;
     }
-
     public void setParentRecipe(RecipeModel parentRecipe) {
         this.parentRecipe = parentRecipe;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public Integer getPuntuation() {
+        return puntuation;
+    }
+    public void setPuntuation(Integer puntuation) {
+        this.puntuation = puntuation;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 }
