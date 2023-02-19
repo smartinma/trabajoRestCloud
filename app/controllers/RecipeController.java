@@ -40,8 +40,9 @@ public class RecipeController extends Controller{
 
         //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
+        String msg = messages.at("create");
 
-        //Obtener los datos de la petición de creado mediante formulario
+        //Obtener los datos del body de la petición de creado mediante formulario
         Form<RecipeInputResource> recipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
         RecipeResource recipeResource;
 
@@ -51,8 +52,6 @@ public class RecipeController extends Controller{
 
         }else{
             recipeResource = recipeForm.get();
-            String msg = messages.at("create");
-            System.out.println(msg+" "+ recipeResource.getName());
 
         }
 
@@ -64,38 +63,27 @@ public class RecipeController extends Controller{
         ObjectNode jsonResult = Json.newObject();
         jsonResult.put("id", recipeModel.getId());
 
-        return Results.created(jsonResult);
+        return Results.created(msg+" "+recipeModel.getName()+jsonResult);
 
     }
 
     public Result delete(Http.Request req, Integer id) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
-        //Obtener los datos de la petición de eliminado mediante formulario
-        Form<RecipeInputResource> deleteRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
-        RecipeInputResource recipeResource;
-
         //Búsqueda por id de la receta a eliminar
-        RecipeModel um = RecipeModel.findById(Long.valueOf(id));
+        RecipeModel rm = RecipeModel.findById(Long.valueOf(id));
 
-        if (um == null) {
+        //Gestión de errores
+        if (rm == null) {
             return Results.notFound();
 
         }else{
-            //Gestión de errores
-            if(deleteRecipeForm.hasErrors()){
-                return Results.badRequest(deleteRecipeForm.errorsAsJson());
 
-            }else{
-                recipeResource = deleteRecipeForm.get();
-                String msg = messages.at("delete");
-                um.delete(id);
+            String msg = messages.at("delete");
+            rm.delete(id);
 
-                return Results.ok(msg+" "+ recipeResource.getName());
-
-            }
+            return Results.ok(msg+" "+ id);
 
         }
 
@@ -103,42 +91,37 @@ public class RecipeController extends Controller{
 
     public Result update(Http.Request req, Integer id) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
-        //Obtener los datos nuevos de la petición de modificación mediante formulario
         Form<RecipeInputResource> newRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
         RecipeInputResource recipeResource;
 
-        //Búsqueda de la receta a valorar por id
-        RecipeModel um = RecipeModel.findById(Long.valueOf(id));
+        RecipeModel rm = RecipeModel.findById(Long.valueOf(id));
 
-        if (um == null) {
+        if (rm == null) {
             return Results.notFound();
         }else{
-            //Gestión de errores
             if(newRecipeForm.hasErrors()){
                 return Results.badRequest(newRecipeForm.errorsAsJson());
 
             }else{
                 recipeResource = newRecipeForm.get();
                 RecipeTitle rt = recipeResource.toModel().getTitle();
+                rt.setTitle(rt.getTitle().toLowerCase().replaceAll(" ","_"));
 
                 String msg = messages.at("update");
-                um.setName(recipeResource.getName());
-                um.setTime(recipeResource.getTime());
-                um.setTypeFood(recipeResource.getTypeFood());
-                um.setTitle(rt);
+                rm.setName(recipeResource.getName().toLowerCase());
+                rm.setTime(recipeResource.getTime());
+                rm.setTypeFood(recipeResource.getTypeFood().toLowerCase());
+                rm.setTitle(rt);
 
-                //Actualizacion de datos en el modelo
-                um.save();
-                um.refresh();
+                rm.save();
+                rm.refresh();
 
-                //Conversión a JSON
                 ObjectNode jsonResult = Json.newObject();
-                jsonResult.put("id", um.getId());
+                jsonResult.put("id", rm.getId());
 
-                return Results.ok(msg+" "+ recipeResource.getName());
+                return Results.ok(msg+" "+ recipeResource.getName()+jsonResult);
 
             }
 
@@ -146,42 +129,68 @@ public class RecipeController extends Controller{
 
     }
 
-    public Result valorateRecipe(Http.Request req, Integer id, Integer point) {
+    public Result valorateRecipe(Http.Request req, Integer id) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
-        //Obtener los datos nuevos de la petición de modificación mediante formulario
-        Form<RecipeInputResource> newRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
-        RecipeInputResource recipeResource;
+        Form<RecipeValoration> newRecipeValorationResource = formFactory.form(RecipeValoration.class).bindFromRequest(req);
+        RecipeValoration recipeValoration;
 
-        //Búsqueda de la receta a valorar por id
-        RecipeModel um = RecipeModel.findById(Long.valueOf(id));
+        RecipeModel rm = RecipeModel.findById(Long.valueOf(id));
 
-        if (um == null) {
+        if (rm == null) {
             return Results.notFound();
+
         }else{
-            //Gestión de errores
-            if(newRecipeForm.hasErrors()){
-                return Results.badRequest(newRecipeForm.errorsAsJson());
+            recipeValoration = newRecipeValorationResource.get();
+
+            String msg = messages.at("puntuate");
+            rm.addValoration(recipeValoration);
+
+            rm.save();
+            rm.refresh();
+
+            ObjectNode jsonResult = Json.newObject();
+            jsonResult.put("id", rm.getId());
+
+            return Results.ok(msg+" "+ jsonResult);
+
+        }
+
+    }
+
+
+    public Result inputIngredientsRecipe(Http.Request req, Integer id) {
+
+        Messages messages = messagesApi.preferred(req);
+
+        Form<RecipeIngredient> newIngredientForm = formFactory.form(RecipeIngredient.class).bindFromRequest(req);
+        RecipeIngredient recipeIngredient;
+
+        RecipeModel rm = RecipeModel.findById(Long.valueOf(id));
+
+        if (rm == null) {
+            return Results.notFound();
+
+        }else{
+            if(newIngredientForm.hasErrors()){
+                return Results.badRequest(newIngredientForm.errorsAsJson());
 
             }else{
-                recipeResource = newRecipeForm.get();
-                RecipeValoration rv = new RecipeValoration();
-                rv.setPuntuation(point);
 
-                String msg = messages.at("puntuate");
-                um.addValoration(rv);
+                recipeIngredient = newIngredientForm.get();
+                rm.getIngredients().add(recipeIngredient);
+                rm.save();
+                rm.refresh();
 
-                //Actualizacion de datos en el modelo
-                um.save();
-                um.refresh();
 
-                //Conversión a JSON
+                String msg = messages.at("ingredient");
+                rm.addIngredient(recipeIngredient);
+
                 ObjectNode jsonResult = Json.newObject();
-                jsonResult.put("id", um.getId());
+                jsonResult.put("id", rm.getId());
 
-                return Results.ok(msg+" "+ recipeResource.getName());
+                return Results.ok(msg+" "+ recipeIngredient.getNombreIngrediente()+jsonResult);
 
             }
 
@@ -189,59 +198,16 @@ public class RecipeController extends Controller{
 
     }
 
-    /*public Result inputIngredientsRecipe(Http.Request req, Integer id, String ingredient) {
-
-        //Internacionalización de la API mediante idiomas
-        Messages messages = messagesApi.preferred(req);
-
-        //Obtener los datos nuevos de la petición de modificación mediante formulario
-        Form<RecipeInputResource> newRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
-        RecipeInputResource recipeResource;
-
-        //Búsqueda de la receta a valorar por id
-        RecipeModel um = RecipeModel.findById(Long.valueOf(id));
-
-        if (um == null) {
-            return Results.notFound();
-        }else{
-            //Gestión de errores
-            if(newRecipeForm.hasErrors()){
-                return Results.badRequest(newRecipeForm.errorsAsJson());
-
-            }else{
-                recipeResource = newRecipeForm.get();
-                RecipeIngredient ri = new RecipeIngredient();
-                ri.setNombreIngrediente(ingredient);
-
-                String msg = messages.at("puntuate");
-                um.addIngredient(ri);
-
-                //Actualizacion de datos en el modelo
-                um.save();
-                um.refresh();
-
-                //Conversión a JSON
-                ObjectNode jsonResult = Json.newObject();
-                jsonResult.put("id", um.getId());
-
-                return Results.ok(msg+" "+ recipeResource.getName());
-
-            }
-
-        }
-
-    }*/
-
-
-    @Cached(key="recipe-view", duration = 10)
+    @Cached(key="recipe-view", duration = 5)
     public Result retrieveById(Http.Request req, Integer id) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         RecipeModel rm;
         Optional<Object> optRecipe = cache.get("recipe");
 
+        //Función cacheada, primero buscamos en la caché esa key por si se encuentra anteriormente, si no buscamos en el modelo
+        //Si se realiza la operación antes de 5s de otra con esa key anterior se obtendrá el valor cacheado
         if (optRecipe.isPresent()) {
             String msg1 = messages.at("cached");
             System.out.println(msg1);
@@ -261,7 +227,7 @@ public class RecipeController extends Controller{
         RecipeResource recipeResource = new RecipeResource(rm);
         Result res;
 
-        //Vista Json/Xml
+        //Vista Json ó Xml(template) dependiendo del valor aceptado en la petición
         if(req.accepts("application/json")){
             res = Results.ok(recipeResource.toJson());
 
@@ -277,10 +243,9 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-view", duration = 10)
+    @Cached(key="all-recipes-view", duration = 5)
     public Result retrieveAll(Http.Request req) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         List<RecipeModel> recipes;
@@ -298,7 +263,6 @@ public class RecipeController extends Controller{
             cache.set("all-recipes", recipes);
         }
 
-        //Enfoque funcional:
         List<RecipeResource> resourcesF = recipes
                 .stream()
                 .map(RecipeResource::new)
@@ -307,7 +271,6 @@ public class RecipeController extends Controller{
         JsonNode json = Json.toJson(resourcesF);
         Result res = Results.ok(json);
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(json);
 
@@ -323,10 +286,9 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-type-view", duration = 10)
+    @Cached(key="all-recipes-by-type-view", duration = 5)
     public Result retrieveAllByType(Http.Request req, String typeFood) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         List<RecipeModel> recipes;
@@ -344,7 +306,6 @@ public class RecipeController extends Controller{
             cache.set("all-recipes-by-type", recipes);
         }
 
-        //Enfoque funcional:
         List<RecipeResource> resourcesF = recipes
                 .stream()
                 .map(RecipeResource::new)
@@ -353,7 +314,6 @@ public class RecipeController extends Controller{
         JsonNode json = Json.toJson(resourcesF);
         Result res;
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(json);
 
@@ -369,10 +329,9 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="recipe-by-title-view", duration = 10)
+    @Cached(key="recipe-by-title-view", duration = 5)
     public Result retrieveByTitle(Http.Request req, String title) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         RecipeModel rm;
@@ -397,7 +356,6 @@ public class RecipeController extends Controller{
         RecipeResource recipeResource = new RecipeResource(rm);
         Result res;
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(recipeResource.toJson());
 
@@ -413,10 +371,9 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-time-view", duration = 10)
+    @Cached(key="all-recipes-by-time-view", duration = 5)
     public Result retrieveAllByTime(Http.Request req, Integer time) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         List<RecipeModel> recipes;
@@ -434,7 +391,6 @@ public class RecipeController extends Controller{
             cache.set("all-recipes-by-time", recipes);
         }
 
-        //Enfoque funcional:
         List<RecipeResource> resourcesF = recipes
                 .stream()
                 .map(RecipeResource::new)
@@ -443,7 +399,6 @@ public class RecipeController extends Controller{
         JsonNode json = Json.toJson(resourcesF);
         Result res = Results.ok(json);
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(json);
 
@@ -459,10 +414,10 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-ingredient-view", duration = 10)
+
+    @Cached(key="all-recipes-by-ingredient-view", duration = 5)
     public Result retrieveAllByIngredient(Http.Request req, String ingredient) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         List<RecipeModel> recipes;
@@ -480,7 +435,6 @@ public class RecipeController extends Controller{
             cache.set("all-recipes-by-ingredient", recipes);
         }
 
-        //Enfoque funcional:
         List<RecipeResource> resourcesF = recipes
                 .stream()
                 .map(RecipeResource::new)
@@ -489,7 +443,6 @@ public class RecipeController extends Controller{
         JsonNode json = Json.toJson(resourcesF);
         Result res = Results.ok(json);
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(json);
 
@@ -505,10 +458,10 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-name-view", duration = 10)
+
+    @Cached(key="all-recipes-by-name-view", duration = 5)
     public Result retrieveAllByName(Http.Request req, String name) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         List<RecipeModel> recipes;
@@ -526,7 +479,6 @@ public class RecipeController extends Controller{
             cache.set("all-recipes-by-name", recipes);
         }
 
-        //Enfoque funcional:
         List<RecipeResource> resourcesF = recipes
                 .stream()
                 .map(RecipeResource::new)
@@ -535,7 +487,6 @@ public class RecipeController extends Controller{
         JsonNode json = Json.toJson(resourcesF);
         Result res = Results.ok(json);
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(json);
 
@@ -551,10 +502,9 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-valoration-view", duration = 10)
+    @Cached(key="all-recipes-by-valoration-view", duration = 5)
     public Result retrieveAllByValoration(Http.Request req, Integer point) {
 
-        //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         List<RecipeModel> recipes;
@@ -572,7 +522,6 @@ public class RecipeController extends Controller{
             cache.set("all-recipes-by-valoration", recipes);
         }
 
-        //Enfoque funcional:
         List<RecipeResource> resourcesF = recipes
                 .stream()
                 .map(RecipeResource::new)
@@ -581,7 +530,6 @@ public class RecipeController extends Controller{
         JsonNode json = Json.toJson(resourcesF);
         Result res = Results.ok(json);
 
-        //Vista Json/Xml
         if(req.accepts("application/json")){
             res = Results.ok(json);
 

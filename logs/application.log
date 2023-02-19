@@ -1,391 +1,1449 @@
-2023-02-09 21:04:11 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
-2023-02-09 21:04:11 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
-2023-02-09 21:04:14 [1;31mERROR[0;39m [36mplay.api.http.DevHttpErrorHandler[0;39m [35m[0;39m 
-
-! @80h8li7in - Internal server error, for (PUT) [/recipe/2/ingredients/sal] ->
- 
-play.api.UnexpectedException: Unexpected exception[CreationException: Unable to create injector, see the following errors:
-
-1) Error injecting constructor, java.lang.NullPointerException
-  at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:36)
-  at play.db.ebean.EbeanDynamicEvolutions.class(EbeanDynamicEvolutions.java:33)
-  while locating play.db.ebean.EbeanDynamicEvolutions
-  at play.db.ebean.EbeanModule.bindings(EbeanModule.java:21):
-Binding(class play.api.db.evolutions.DynamicEvolutions to ConstructionTarget(class play.db.ebean.EbeanDynamicEvolutions) eagerly) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.db.evolutions.DynamicEvolutions
-Caused by: java.lang.NullPointerException
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.initIntersectionTable(BeanPropertyAssocMany.java:362)
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.setEbeanServer(BeanPropertyAssocMany.java:353)
-	at io.ebeaninternal.server.deploy.BeanDescriptor.setEbeanServer(BeanDescriptor.java:449)
-	at io.ebeaninternal.server.deploy.BeanDescriptorManager.setEbeanServer(BeanDescriptorManager.java:267)
-	at io.ebeaninternal.server.core.DefaultServer.<init>(DefaultServer.java:197)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:112)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:36)
-	at io.ebean.DatabaseFactory.createInternal(DatabaseFactory.java:136)
-	at io.ebean.DatabaseFactory.create(DatabaseFactory.java:85)
-	at play.db.ebean.EbeanDynamicEvolutions.lambda$start$2(EbeanDynamicEvolutions.java:50)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1337)
-	at play.db.ebean.EbeanDynamicEvolutions.start(EbeanDynamicEvolutions.java:50)
-	at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:39)
-	at play.db.ebean.EbeanDynamicEvolutions$$FastClassByGuice$$52c94231.newInstance(<generated>)
-	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:114)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.InternalInjectorCreator.loadEagerSingletons(InternalInjectorCreator.java:213)
-	at com.google.inject.internal.InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:184)
-	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:111)
-	at com.google.inject.Guice.createInjector(Guice.java:87)
-	at com.google.inject.Guice.createInjector(Guice.java:78)
-	at play.api.inject.guice.GuiceBuilder.injector(GuiceInjectorBuilder.scala:200)
-	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)
-	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
-	at play.core.server.DevServerStart$$anon$1.$anonfun$reload$2(DevServerStart.scala:193)
-	at play.utils.Threads$.withContextClassLoader(Threads.scala:22)
-	at play.core.server.DevServerStart$$anon$1.reload(DevServerStart.scala:185)
-	at play.core.server.DevServerStart$$anon$1.get(DevServerStart.scala:148)
-	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:308)
-	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
-	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
-	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
-	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
-	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
-	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
-	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
-	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
-	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
-	at akka.actor.Actor.aroundReceive(Actor.scala:537)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-
-2) Error injecting constructor, java.lang.NullPointerException
-  at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:36)
-  at play.db.ebean.EbeanDynamicEvolutions.class(EbeanDynamicEvolutions.java:33)
-  while locating play.db.ebean.EbeanDynamicEvolutions
-  at play.db.ebean.EbeanModule.bindings(EbeanModule.java:21):
-Binding(class play.api.db.evolutions.DynamicEvolutions to ConstructionTarget(class play.db.ebean.EbeanDynamicEvolutions) eagerly) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.db.evolutions.DynamicEvolutions
-  while locating play.api.db.evolutions.ApplicationEvolutionsProvider
-  at play.api.db.evolutions.EvolutionsModule.<init>(EvolutionsModule.scala:23):
-Binding(class play.api.db.evolutions.ApplicationEvolutions to ProviderConstructionTarget(class play.api.db.evolutions.ApplicationEvolutionsProvider) eagerly) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.db.evolutions.ApplicationEvolutions
-Caused by: java.lang.NullPointerException
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.initIntersectionTable(BeanPropertyAssocMany.java:362)
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.setEbeanServer(BeanPropertyAssocMany.java:353)
-	at io.ebeaninternal.server.deploy.BeanDescriptor.setEbeanServer(BeanDescriptor.java:449)
-	at io.ebeaninternal.server.deploy.BeanDescriptorManager.setEbeanServer(BeanDescriptorManager.java:267)
-	at io.ebeaninternal.server.core.DefaultServer.<init>(DefaultServer.java:197)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:112)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:36)
-	at io.ebean.DatabaseFactory.createInternal(DatabaseFactory.java:136)
-	at io.ebean.DatabaseFactory.create(DatabaseFactory.java:85)
-	at play.db.ebean.EbeanDynamicEvolutions.lambda$start$2(EbeanDynamicEvolutions.java:50)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1337)
-	at play.db.ebean.EbeanDynamicEvolutions.start(EbeanDynamicEvolutions.java:50)
-	at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:39)
-	at play.db.ebean.EbeanDynamicEvolutions$$FastClassByGuice$$52c94231.newInstance(<generated>)
-	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:114)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1094)
-	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)
-	at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)
-	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)
-	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)
-	at play.api.db.evolutions.ApplicationEvolutionsProvider.get$lzycompute(EvolutionsModule.scala:64)
-	at play.api.db.evolutions.ApplicationEvolutionsProvider.get(EvolutionsModule.scala:60)
-	at play.api.db.evolutions.ApplicationEvolutionsProvider.get(EvolutionsModule.scala:51)
-	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:85)
-	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:77)
-	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:59)
-	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:61)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.InternalInjectorCreator.loadEagerSingletons(InternalInjectorCreator.java:213)
-	at com.google.inject.internal.InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:184)
-	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:111)
-	at com.google.inject.Guice.createInjector(Guice.java:87)
-	at com.google.inject.Guice.createInjector(Guice.java:78)
-	at play.api.inject.guice.GuiceBuilder.injector(GuiceInjectorBuilder.scala:200)
-	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)
-	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
-	at play.core.server.DevServerStart$$anon$1.$anonfun$reload$2(DevServerStart.scala:193)
-	at play.utils.Threads$.withContextClassLoader(Threads.scala:22)
-	at play.core.server.DevServerStart$$anon$1.reload(DevServerStart.scala:185)
-	at play.core.server.DevServerStart$$anon$1.get(DevServerStart.scala:148)
-	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:308)
-	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
-	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
-	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
-	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
-	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
-	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
-	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
-	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
-	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
-	at akka.actor.Actor.aroundReceive(Actor.scala:537)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-
-2 errors]
-	at play.core.server.DevServerStart$$anon$1.reload(DevServerStart.scala:254)
-	at play.core.server.DevServerStart$$anon$1.get(DevServerStart.scala:148)
-	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:308)
-	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
-	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
-	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
-	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
-	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
-	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
-	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
-	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
-	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
-	at akka.actor.Actor.aroundReceive(Actor.scala:537)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-Caused by: com.google.inject.CreationException: Unable to create injector, see the following errors:
-
-1) Error injecting constructor, java.lang.NullPointerException
-  at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:36)
-  at play.db.ebean.EbeanDynamicEvolutions.class(EbeanDynamicEvolutions.java:33)
-  while locating play.db.ebean.EbeanDynamicEvolutions
-  at play.db.ebean.EbeanModule.bindings(EbeanModule.java:21):
-Binding(class play.api.db.evolutions.DynamicEvolutions to ConstructionTarget(class play.db.ebean.EbeanDynamicEvolutions) eagerly) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.db.evolutions.DynamicEvolutions
-Caused by: java.lang.NullPointerException
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.initIntersectionTable(BeanPropertyAssocMany.java:362)
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.setEbeanServer(BeanPropertyAssocMany.java:353)
-	at io.ebeaninternal.server.deploy.BeanDescriptor.setEbeanServer(BeanDescriptor.java:449)
-	at io.ebeaninternal.server.deploy.BeanDescriptorManager.setEbeanServer(BeanDescriptorManager.java:267)
-	at io.ebeaninternal.server.core.DefaultServer.<init>(DefaultServer.java:197)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:112)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:36)
-	at io.ebean.DatabaseFactory.createInternal(DatabaseFactory.java:136)
-	at io.ebean.DatabaseFactory.create(DatabaseFactory.java:85)
-	at play.db.ebean.EbeanDynamicEvolutions.lambda$start$2(EbeanDynamicEvolutions.java:50)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1337)
-	at play.db.ebean.EbeanDynamicEvolutions.start(EbeanDynamicEvolutions.java:50)
-	at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:39)
-	at play.db.ebean.EbeanDynamicEvolutions$$FastClassByGuice$$52c94231.newInstance(<generated>)
-	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:114)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.InternalInjectorCreator.loadEagerSingletons(InternalInjectorCreator.java:213)
-	at com.google.inject.internal.InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:184)
-	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:111)
-	at com.google.inject.Guice.createInjector(Guice.java:87)
-	at com.google.inject.Guice.createInjector(Guice.java:78)
-	at play.api.inject.guice.GuiceBuilder.injector(GuiceInjectorBuilder.scala:200)
-	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)
-	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
-	at play.core.server.DevServerStart$$anon$1.$anonfun$reload$2(DevServerStart.scala:193)
-	at play.utils.Threads$.withContextClassLoader(Threads.scala:22)
-	at play.core.server.DevServerStart$$anon$1.reload(DevServerStart.scala:185)
-	at play.core.server.DevServerStart$$anon$1.get(DevServerStart.scala:148)
-	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:308)
-	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
-	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
-	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
-	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
-	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
-	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
-	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
-	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
-	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
-	at akka.actor.Actor.aroundReceive(Actor.scala:537)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-
-2) Error injecting constructor, java.lang.NullPointerException
-  at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:36)
-  at play.db.ebean.EbeanDynamicEvolutions.class(EbeanDynamicEvolutions.java:33)
-  while locating play.db.ebean.EbeanDynamicEvolutions
-  at play.db.ebean.EbeanModule.bindings(EbeanModule.java:21):
-Binding(class play.api.db.evolutions.DynamicEvolutions to ConstructionTarget(class play.db.ebean.EbeanDynamicEvolutions) eagerly) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.db.evolutions.DynamicEvolutions
-  while locating play.api.db.evolutions.ApplicationEvolutionsProvider
-  at play.api.db.evolutions.EvolutionsModule.<init>(EvolutionsModule.scala:23):
-Binding(class play.api.db.evolutions.ApplicationEvolutions to ProviderConstructionTarget(class play.api.db.evolutions.ApplicationEvolutionsProvider) eagerly) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.db.evolutions.ApplicationEvolutions
-Caused by: java.lang.NullPointerException
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.initIntersectionTable(BeanPropertyAssocMany.java:362)
-	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.setEbeanServer(BeanPropertyAssocMany.java:353)
-	at io.ebeaninternal.server.deploy.BeanDescriptor.setEbeanServer(BeanDescriptor.java:449)
-	at io.ebeaninternal.server.deploy.BeanDescriptorManager.setEbeanServer(BeanDescriptorManager.java:267)
-	at io.ebeaninternal.server.core.DefaultServer.<init>(DefaultServer.java:197)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:112)
-	at io.ebeaninternal.server.core.DefaultContainer.createServer(DefaultContainer.java:36)
-	at io.ebean.DatabaseFactory.createInternal(DatabaseFactory.java:136)
-	at io.ebean.DatabaseFactory.create(DatabaseFactory.java:85)
-	at play.db.ebean.EbeanDynamicEvolutions.lambda$start$2(EbeanDynamicEvolutions.java:50)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1337)
-	at play.db.ebean.EbeanDynamicEvolutions.start(EbeanDynamicEvolutions.java:50)
-	at play.db.ebean.EbeanDynamicEvolutions.<init>(EbeanDynamicEvolutions.java:39)
-	at play.db.ebean.EbeanDynamicEvolutions$$FastClassByGuice$$52c94231.newInstance(<generated>)
-	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:114)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1094)
-	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)
-	at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)
-	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)
-	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)
-	at play.api.db.evolutions.ApplicationEvolutionsProvider.get$lzycompute(EvolutionsModule.scala:64)
-	at play.api.db.evolutions.ApplicationEvolutionsProvider.get(EvolutionsModule.scala:60)
-	at play.api.db.evolutions.ApplicationEvolutionsProvider.get(EvolutionsModule.scala:51)
-	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:85)
-	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:77)
-	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:59)
-	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:61)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.InternalInjectorCreator.loadEagerSingletons(InternalInjectorCreator.java:213)
-	at com.google.inject.internal.InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:184)
-	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:111)
-	at com.google.inject.Guice.createInjector(Guice.java:87)
-	at com.google.inject.Guice.createInjector(Guice.java:78)
-	at play.api.inject.guice.GuiceBuilder.injector(GuiceInjectorBuilder.scala:200)
-	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)
-	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
-	at play.core.server.DevServerStart$$anon$1.$anonfun$reload$2(DevServerStart.scala:193)
-	at play.utils.Threads$.withContextClassLoader(Threads.scala:22)
-	at play.core.server.DevServerStart$$anon$1.reload(DevServerStart.scala:185)
-	at play.core.server.DevServerStart$$anon$1.get(DevServerStart.scala:148)
-	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:308)
-	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
-	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
-	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
-	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
-	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
-	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
-	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
-	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
-	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
-	at akka.actor.Actor.aroundReceive(Actor.scala:537)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
-	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-
-2 errors
-	at com.google.inject.internal.Errors.throwCreationExceptionIfErrorsExist(Errors.java:554)
-	at com.google.inject.internal.InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:188)
-	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:111)
-	at com.google.inject.Guice.createInjector(Guice.java:87)
-	at com.google.inject.Guice.createInjector(Guice.java:78)
-	at play.api.inject.guice.GuiceBuilder.injector(GuiceInjectorBuilder.scala:200)
-	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)
-	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
-	at play.core.server.DevServerStart$$anon$1.$anonfun$reload$2(DevServerStart.scala:193)
-	at play.utils.Threads$.withContextClassLoader(Threads.scala:22)
-	at play.core.server.DevServerStart$$anon$1.reload(DevServerStart.scala:185)
-	... 25 common frames omitted
-2023-02-09 21:07:56 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
-2023-02-09 21:07:56 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
-2023-02-09 21:07:56 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2023-02-09 21:08:02 [31mWARN [0;39m [36makka.actor.CoordinatedShutdown[0;39m [35mCoordinatedShutdown(akka://play-dev-mode)[0;39m Coordinated shutdown phase [service-unbind] timed out after 5000 milliseconds
-2023-02-09 21:08:02 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
-2023-02-09 21:10:58 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
-2023-02-09 21:10:58 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
-2023-02-09 21:11:00 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2023-02-14 19:14:21 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 19:14:21 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 19:14:24 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
 
-2023-02-09 21:11:00 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-02-09 21:11:30 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
-2023-02-09 21:11:30 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
-2023-02-09 21:11:30 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2023-02-09 21:11:30 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
-2023-02-09 21:11:30 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
+2023-02-14 19:14:24 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 19:14:25 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80iiggad7 - Internal server error, for (POST) [/recipes] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-14 19:14:31 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 19:14:33 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 19:14:33 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 19:14:33 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 19:14:33 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 19:14:33 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80iiggn2l - Internal server error, for (GET) [/] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-14 19:14:33 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80iiggn3p - Internal server error, for (GET) [/] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-14 19:14:38 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 19:14:39 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 19:14:39 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 19:14:40 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 19:14:40 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 19:19:24 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2023-02-14 19:19:24 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2023-02-14 19:19:24 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2023-02-14 19:19:24 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 19:19:24 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
+2023-02-14 19:39:20 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 19:39:20 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 19:39:21 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 19:39:21 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 20:12:52 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 20:12:53 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 20:12:53 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 20:12:53 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 20:12:53 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 20:17:44 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 20:17:45 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 20:17:45 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 20:17:45 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 20:17:45 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 20:17:48 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80iioojlg - Internal server error, for (GET) [/recipes/ingredient/maiz] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[ClassCastException: class java.lang.String cannot be cast to class io.ebean.bean.EntityBean (java.lang.String is in module java.base of loader 'bootstrap'; io.ebean.bean.EntityBean is in unnamed module of loader play.runsupport.NamedURLClassLoader @5d6ed433)]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: java.lang.ClassCastException: class java.lang.String cannot be cast to class io.ebean.bean.EntityBean (java.lang.String is in module java.base of loader 'bootstrap'; io.ebean.bean.EntityBean is in unnamed module of loader play.runsupport.NamedURLClassLoader @5d6ed433)
+	at io.ebeaninternal.server.expression.SimpleExpression.addBindValues(SimpleExpression.java:76)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.addBindValues(DefaultExpressionList.java:640)
+	at io.ebeaninternal.server.expression.DefaultExpressionRequest.<init>(DefaultExpressionRequest.java:37)
+	at io.ebeaninternal.server.query.CQueryPredicates.prepare(CQueryPredicates.java:193)
+	at io.ebeaninternal.server.query.CQueryBuilder.buildQuery(CQueryBuilder.java:331)
+	at io.ebeaninternal.server.query.CQueryEngine.findMany(CQueryEngine.java:342)
+	at io.ebeaninternal.server.query.DefaultOrmQueryEngine.findMany(DefaultOrmQueryEngine.java:131)
+	at io.ebeaninternal.server.core.OrmQueryRequest.findList(OrmQueryRequest.java:404)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1463)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:134)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:461)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-14 20:19:34 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 20:19:35 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 20:19:35 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 20:19:35 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 20:19:35 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 20:24:00 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 20:24:01 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 20:24:01 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 20:24:01 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 20:24:01 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 20:39:07 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 20:39:07 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-14 20:39:07 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-14 20:39:08 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-14 20:39:08 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-14 20:50:48 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2023-02-14 20:50:48 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2023-02-14 20:50:48 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2023-02-14 20:50:48 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-14 20:50:48 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
+2023-02-15 13:04:16 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-15 13:04:16 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-15 13:04:18 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-15 13:04:18 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-15 13:57:10 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2023-02-15 13:57:10 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2023-02-15 13:57:10 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2023-02-15 13:57:10 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-15 13:57:10 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
+2023-02-16 16:17:40 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 16:17:40 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 16:17:43 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 16:17:43 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 16:21:24 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j681935 - Internal server error, for (PATCH) [/recipe/1/puntuation] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[IllegalStateException: Error(s) binding form: {"typeFood":["This value is required"],"ingredient":["This value cannot be blank"],"name":["This value cannot be blank"],"time":["This value is required"],"title":["This value cannot be blank"]}]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: java.lang.IllegalStateException: Error(s) binding form: {"typeFood":["This value is required"],"ingredient":["This value cannot be blank"],"name":["This value cannot be blank"],"time":["This value is required"],"title":["This value cannot be blank"]}
+	at play.data.Form.get(Form.java:1343)
+	at play.data.Form.get(Form.java:1327)
+	at controllers.RecipeController.valorateRecipe(RecipeController.java:147)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$36(Routes.scala:478)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.core.j.JavaAction.$anonfun$apply$8(JavaAction.scala:175)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:678)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at play.core.j.HttpExecutionContext.$anonfun$execute$1(HttpExecutionContext.scala:64)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:59)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallbacks(Promise.scala:312)
+	at scala.concurrent.impl.Promise$DefaultPromise.map(Promise.scala:182)
+	at scala.concurrent.Future$.apply(Future.scala:678)
+	at play.core.j.JavaAction.apply(JavaAction.scala:176)
+	at play.api.mvc.Action.$anonfun$apply$4(Action.scala:82)
+	at play.api.libs.streams.StrictAccumulator.$anonfun$mapFuture$4(Accumulator.scala:168)
+	at scala.util.Try$.apply(Try.scala:210)
+	at play.api.libs.streams.StrictAccumulator.$anonfun$mapFuture$3(Accumulator.scala:168)
+	at scala.Function1.$anonfun$andThen$1(Function1.scala:87)
+	at scala.Function1.$anonfun$andThen$1(Function1.scala:87)
+	at play.api.libs.streams.StrictAccumulator.run(Accumulator.scala:199)
+	at play.core.server.AkkaHttpServer.$anonfun$runAction$4(AkkaHttpServer.scala:423)
+	at akka.http.scaladsl.util.FastFuture$.strictTransform$1(FastFuture.scala:41)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$3(FastFuture.scala:51)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:484)
+	... 12 common frames omitted
+2023-02-16 16:23:06 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 16:23:07 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 16:23:07 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 16:23:07 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 16:23:07 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 16:23:07 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6875km - Internal server error, for (PATCH) [/recipe/1/puntuation] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[IllegalStateException: Error(s) binding form: {"typeFood":["This value cannot be blank"],"ingredient":["This value cannot be blank"],"name":["This value is required"],"time":["This value is required"],"title":["This value cannot be blank"]}]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: java.lang.IllegalStateException: Error(s) binding form: {"typeFood":["This value cannot be blank"],"ingredient":["This value cannot be blank"],"name":["This value is required"],"time":["This value is required"],"title":["This value cannot be blank"]}
+	at play.data.Form.get(Form.java:1343)
+	at play.data.Form.get(Form.java:1327)
+	at controllers.RecipeController.valorateRecipe(RecipeController.java:147)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$36(Routes.scala:478)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.core.j.JavaAction.$anonfun$apply$8(JavaAction.scala:175)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:678)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at play.core.j.HttpExecutionContext.$anonfun$execute$1(HttpExecutionContext.scala:64)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:59)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallbacks(Promise.scala:312)
+	at scala.concurrent.impl.Promise$DefaultPromise.map(Promise.scala:182)
+	at scala.concurrent.Future$.apply(Future.scala:678)
+	at play.core.j.JavaAction.apply(JavaAction.scala:176)
+	at play.api.mvc.Action.$anonfun$apply$4(Action.scala:82)
+	at play.api.libs.streams.StrictAccumulator.$anonfun$mapFuture$4(Accumulator.scala:168)
+	at scala.util.Try$.apply(Try.scala:210)
+	at play.api.libs.streams.StrictAccumulator.$anonfun$mapFuture$3(Accumulator.scala:168)
+	at scala.Function1.$anonfun$andThen$1(Function1.scala:87)
+	at scala.Function1.$anonfun$andThen$1(Function1.scala:87)
+	at play.api.libs.streams.StrictAccumulator.run(Accumulator.scala:199)
+	at play.core.server.AkkaHttpServer.$anonfun$runAction$4(AkkaHttpServer.scala:423)
+	at akka.http.scaladsl.util.FastFuture$.strictTransform$1(FastFuture.scala:41)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$3(FastFuture.scala:51)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:484)
+	... 12 common frames omitted
+2023-02-16 16:23:28 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 16:23:28 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 16:23:28 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 16:23:29 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 16:23:29 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 16:23:29 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j688c43 - Internal server error, for (PATCH) [/recipe/1/puntuation] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'puntuation']]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'puntuation'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162)
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:54)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172)
+	at play.data.Form.lambda$runValidation$8(Form.java:965)
+	at play.data.Form.withRequestLocale(Form.java:1670)
+	at play.data.Form.runValidation(Form.java:950)
+	at play.data.Form.bind(Form.java:1110)
+	at play.data.Form.bindFromRequest(Form.java:691)
+	at controllers.RecipeController.valorateRecipe(RecipeController.java:138)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$36(Routes.scala:478)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.core.j.JavaAction.$anonfun$apply$8(JavaAction.scala:175)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:678)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at play.core.j.HttpExecutionContext.$anonfun$execute$1(HttpExecutionContext.scala:64)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:59)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallbacks(Promise.scala:312)
+	at scala.concurrent.impl.Promise$DefaultPromise.map(Promise.scala:182)
+	at scala.concurrent.Future$.apply(Future.scala:678)
+	at play.core.j.JavaAction.apply(JavaAction.scala:176)
+	at play.api.mvc.Action.$anonfun$apply$4(Action.scala:82)
+	at play.api.libs.streams.StrictAccumulator.$anonfun$mapFuture$4(Accumulator.scala:168)
+	at scala.util.Try$.apply(Try.scala:210)
+	at play.api.libs.streams.StrictAccumulator.$anonfun$mapFuture$3(Accumulator.scala:168)
+	at scala.Function1.$anonfun$andThen$1(Function1.scala:87)
+	at scala.Function1.$anonfun$andThen$1(Function1.scala:87)
+	at play.api.libs.streams.StrictAccumulator.run(Accumulator.scala:199)
+	at play.core.server.AkkaHttpServer.$anonfun$runAction$4(AkkaHttpServer.scala:423)
+	at akka.http.scaladsl.util.FastFuture$.strictTransform$1(FastFuture.scala:41)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$3(FastFuture.scala:51)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:484)
+	... 12 common frames omitted
+2023-02-16 16:24:25 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 16:24:25 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 16:24:25 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 16:24:25 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 16:24:25 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 16:24:25 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j68bhnn - Internal server error, for (PATCH) [/recipe/1/puntuation] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[IllegalStateException: Error(s) binding form: {"typeFood":["This value is required"],"ingredient":["This value cannot be blank"],"name":["This value cannot be blank"],"time":["This value is required"],"title":["This value cannot be blank"]}]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: java.lang.IllegalStateException: Error(s) binding form: {"typeFood":["This value is required"],"ingredient":["This value cannot be blank"],"name":["This value cannot be blank"],"time":["This value is required"],"title":["This value cannot be blank"]}
+	at play.data.Form.get(Form.java:1343)
+	at play.data.Form.get(Form.java:1327)
+	at controllers.RecipeController.valorateRecipe(RecipeController.java:147)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$36(Routes.scala:478)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.core.j.JavaAction.$anonfun$apply$8(JavaAction.scala:175)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:678)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at play.core.j.HttpExecutionContext.$anonfun$execute$1(HttpExecutionContext.scala:64)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:59)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallbacks(Promise.scala:312)
+	at scala.concurrent.impl.Promise$DefaultPromise.map(Promise.scala:182)
+	at scala.concurrent.Future$.apply(Future.scala:678)
+	at play.core.j.JavaAction.apply(JavaAction.scala:176)
+	at play.api.mvc.Action.$anonfun$apply$4(Action.scala:82)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 16:31:28 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 16:31:29 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 16:31:29 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 16:31:29 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 16:31:29 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:12:38 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:12:39 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:12:39 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:12:39 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:12:39 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:15:25 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:15:26 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:15:26 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:15:26 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:15:26 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:31:58 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:31:59 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:31:59 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:31:59 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:31:59 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:32:15 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6h96hm - Internal server error, for (POST) [/recipes] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'time']]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'time'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162)
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:54)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172)
+	at play.data.Form.lambda$runValidation$8(Form.java:965)
+	at play.data.Form.withRequestLocale(Form.java:1670)
+	at play.data.Form.runValidation(Form.java:950)
+	at play.data.Form.bind(Form.java:1110)
+	at play.data.Form.bindFromRequest(Form.java:691)
+	at controllers.RecipeController.create(RecipeController.java:46)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$6(Routes.scala:408)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.core.j.JavaAction.$anonfun$apply$8(JavaAction.scala:175)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:678)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at play.core.j.HttpExecutionContext.$anonfun$execute$1(HttpExecutionContext.scala:64)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:59)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallbacks(Promise.scala:312)
+	at scala.concurrent.impl.Promise$DefaultPromise.map(Promise.scala:182)
+	at scala.concurrent.Future$.apply(Future.scala:678)
+	at play.core.j.JavaAction.apply(JavaAction.scala:176)
+	at play.api.mvc.Action.$anonfun$apply$4(Action.scala:82)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 17:32:47 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6hb14c - Internal server error, for (POST) [/recipes] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'time']]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'time'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162)
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:54)
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130)
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400)
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172)
+	at play.data.Form.lambda$runValidation$8(Form.java:965)
+	at play.data.Form.withRequestLocale(Form.java:1670)
+	at play.data.Form.runValidation(Form.java:950)
+	at play.data.Form.bind(Form.java:1110)
+	at play.data.Form.bindFromRequest(Form.java:691)
+	at controllers.RecipeController.create(RecipeController.java:46)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$6(Routes.scala:408)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.core.j.JavaAction.$anonfun$apply$8(JavaAction.scala:175)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:678)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at play.core.j.HttpExecutionContext.$anonfun$execute$1(HttpExecutionContext.scala:64)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:59)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.dispatchOrAddCallbacks(Promise.scala:312)
+	at scala.concurrent.impl.Promise$DefaultPromise.map(Promise.scala:182)
+	at scala.concurrent.Future$.apply(Future.scala:678)
+	at play.core.j.JavaAction.apply(JavaAction.scala:176)
+	at play.api.mvc.Action.$anonfun$apply$4(Action.scala:82)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 17:33:25 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:33:25 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:33:25 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:33:25 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:33:25 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:49:53 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:49:53 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:49:53 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:49:53 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:49:53 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:55:08 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:55:08 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:55:08 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:55:09 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:55:09 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:55:09 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6k9a2o - Internal server error, for (PATCH) [/recipe/1/ingredient] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-16 17:55:13 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:55:14 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:55:14 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:55:14 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:55:14 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:55:14 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6k9hgo - Internal server error, for (PATCH) [/recipe/1/ingredient] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-16 17:55:24 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 17:55:25 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 17:55:25 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 17:55:25 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 17:55:25 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 17:58:26 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6kkgbj - Internal server error, for (GET) [/recipes/ingredient/salfumant] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2377)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssoc.createElPropertyValue(BeanPropertyAssoc.java:167)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.buildElPropertyValue(BeanPropertyAssocMany.java:286)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2369)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.elPropertyDeploy(BeanDescriptor.java:2344)
+	at io.ebeaninternal.server.expression.AbstractExpression.propertyContainsMany(AbstractExpression.java:77)
+	at io.ebeaninternal.server.expression.AbstractExpression.containsMany(AbstractExpression.java:69)
+	at io.ebeaninternal.server.expression.SimpleExpression.containsMany(SimpleExpression.java:14)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.containsMany(DefaultExpressionList.java:277)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.createExtraJoinsToSupportManyWhereClause(DefaultOrmQuery.java:410)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.convertJoins(DefaultOrmQuery.java:486)
+	at io.ebeaninternal.server.core.OrmQueryRequest.prepareQuery(OrmQueryRequest.java:173)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1453)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:137)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:434)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 17:58:46 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6klk4o - Internal server error, for (GET) [/recipes/ingredient/salfumant] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2377)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssoc.createElPropertyValue(BeanPropertyAssoc.java:167)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.buildElPropertyValue(BeanPropertyAssocMany.java:286)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2369)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.elPropertyDeploy(BeanDescriptor.java:2344)
+	at io.ebeaninternal.server.expression.AbstractExpression.propertyContainsMany(AbstractExpression.java:77)
+	at io.ebeaninternal.server.expression.AbstractExpression.containsMany(AbstractExpression.java:69)
+	at io.ebeaninternal.server.expression.SimpleExpression.containsMany(SimpleExpression.java:14)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.containsMany(DefaultExpressionList.java:277)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.createExtraJoinsToSupportManyWhereClause(DefaultOrmQuery.java:410)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.convertJoins(DefaultOrmQuery.java:486)
+	at io.ebeaninternal.server.core.OrmQueryRequest.prepareQuery(OrmQueryRequest.java:173)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1453)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:137)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:434)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 17:58:50 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6klp7e - Internal server error, for (GET) [/recipes/ingredient/salfuman] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2377)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssoc.createElPropertyValue(BeanPropertyAssoc.java:167)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.buildElPropertyValue(BeanPropertyAssocMany.java:286)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2369)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.elPropertyDeploy(BeanDescriptor.java:2344)
+	at io.ebeaninternal.server.expression.AbstractExpression.propertyContainsMany(AbstractExpression.java:77)
+	at io.ebeaninternal.server.expression.AbstractExpression.containsMany(AbstractExpression.java:69)
+	at io.ebeaninternal.server.expression.SimpleExpression.containsMany(SimpleExpression.java:14)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.containsMany(DefaultExpressionList.java:277)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.createExtraJoinsToSupportManyWhereClause(DefaultOrmQuery.java:410)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.convertJoins(DefaultOrmQuery.java:486)
+	at io.ebeaninternal.server.core.OrmQueryRequest.prepareQuery(OrmQueryRequest.java:173)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1453)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:137)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:434)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 17:59:10 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6kn37o - Internal server error, for (GET) [/recipes/ingredient/salfuman] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2377)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssoc.createElPropertyValue(BeanPropertyAssoc.java:167)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.buildElPropertyValue(BeanPropertyAssocMany.java:286)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2369)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.elPropertyDeploy(BeanDescriptor.java:2344)
+	at io.ebeaninternal.server.expression.AbstractExpression.propertyContainsMany(AbstractExpression.java:77)
+	at io.ebeaninternal.server.expression.AbstractExpression.containsMany(AbstractExpression.java:69)
+	at io.ebeaninternal.server.expression.SimpleExpression.containsMany(SimpleExpression.java:14)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.containsMany(DefaultExpressionList.java:277)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.createExtraJoinsToSupportManyWhereClause(DefaultOrmQuery.java:410)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.convertJoins(DefaultOrmQuery.java:486)
+	at io.ebeaninternal.server.core.OrmQueryRequest.prepareQuery(OrmQueryRequest.java:173)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1453)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:137)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:434)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 18:00:07 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6l090e - Internal server error, for (GET) [/recipes/ingredient/salfuman] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2377)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssoc.createElPropertyValue(BeanPropertyAssoc.java:167)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.buildElPropertyValue(BeanPropertyAssocMany.java:286)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2369)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.elPropertyDeploy(BeanDescriptor.java:2344)
+	at io.ebeaninternal.server.expression.AbstractExpression.propertyContainsMany(AbstractExpression.java:77)
+	at io.ebeaninternal.server.expression.AbstractExpression.containsMany(AbstractExpression.java:69)
+	at io.ebeaninternal.server.expression.SimpleExpression.containsMany(SimpleExpression.java:14)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.containsMany(DefaultExpressionList.java:277)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.createExtraJoinsToSupportManyWhereClause(DefaultOrmQuery.java:410)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.convertJoins(DefaultOrmQuery.java:486)
+	at io.ebeaninternal.server.core.OrmQueryRequest.prepareQuery(OrmQueryRequest.java:173)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1453)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:137)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:434)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 18:00:30 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6l1h1e - Internal server error, for (GET) [/recipes/ingredient/salfuman] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.PersistenceException: No property found for [nombreIngrediente] in expression ingredients.nombreIngrediente
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2377)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssoc.createElPropertyValue(BeanPropertyAssoc.java:167)
+	at io.ebeaninternal.server.deploy.BeanPropertyAssocMany.buildElPropertyValue(BeanPropertyAssocMany.java:286)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.buildElGetValue(BeanDescriptor.java:2369)
+	at io.ebeaninternal.server.deploy.BeanDescriptor.elPropertyDeploy(BeanDescriptor.java:2344)
+	at io.ebeaninternal.server.expression.AbstractExpression.propertyContainsMany(AbstractExpression.java:77)
+	at io.ebeaninternal.server.expression.AbstractExpression.containsMany(AbstractExpression.java:69)
+	at io.ebeaninternal.server.expression.SimpleExpression.containsMany(SimpleExpression.java:14)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.containsMany(DefaultExpressionList.java:277)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.createExtraJoinsToSupportManyWhereClause(DefaultOrmQuery.java:410)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.convertJoins(DefaultOrmQuery.java:486)
+	at io.ebeaninternal.server.core.OrmQueryRequest.prepareQuery(OrmQueryRequest.java:173)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1453)
+	at io.ebeaninternal.server.core.DefaultServer.findList(DefaultServer.java:1442)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findList(DefaultOrmQuery.java:1483)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findList(DefaultExpressionList.java:452)
+	at models.RecipeModel.findByIngredient(RecipeModel.java:137)
+	at controllers.RecipeController.retrieveAllByIngredient(RecipeController.java:434)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$18(Routes.scala:436)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 18:00:56 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 18:00:56 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 18:00:56 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 18:00:56 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 18:00:56 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 18:00:56 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6l34eo - Internal server error, for (GET) [/recipes/ingredient/salfuman] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-16 18:01:04 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 18:01:05 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 18:01:05 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 18:01:05 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 18:01:05 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 18:01:05 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6l3gnc - Internal server error, for (GET) [/] ->
+ 
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution![An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5(ApplicationEvolutions.scala:519)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$5$adapted(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.ApplicationEvolutions$.$anonfun$runEvolutions$1(ApplicationEvolutions.scala:210)
+	at play.api.db.evolutions.ApplicationEvolutions$.withLock(ApplicationEvolutions.scala:231)
+	at play.api.db.evolutions.ApplicationEvolutions$.runEvolutions(ApplicationEvolutions.scala:201)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4(ApplicationEvolutions.scala:517)
+	at play.api.db.evolutions.EvolutionsWebCommands.$anonfun$handleWebCommand$4$adapted(ApplicationEvolutions.scala:512)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at play.api.db.evolutions.EvolutionsWebCommands.handleWebCommand(ApplicationEvolutions.scala:512)
+	at play.core.DefaultWebCommands.$anonfun$handleWebCommand$1(WebCommands.scala:42)
+	at scala.collection.immutable.Stream.flatMap(Stream.scala:200)
+	at play.core.DefaultWebCommands.handleWebCommand(WebCommands.scala:42)
+	at play.api.http.DefaultHttpRequestHandler.$anonfun$handlerForRequest$4(HttpRequestHandler.scala:223)
+	at scala.Option.flatMap(Option.scala:283)
+	at play.api.http.DefaultHttpRequestHandler.handlerForRequest(HttpRequestHandler.scala:222)
+	at play.core.server.Server$.getHandlerFor(Server.scala:129)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:323)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:225)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1309)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:542)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:496)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:390)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:650)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:521)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:800)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:818)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:716)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2023-02-16 18:01:09 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 18:01:09 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 18:01:09 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 18:01:09 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 18:01:09 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 18:05:21 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6li5h3 - Internal server error, for (GET) [/recipes/title/arroz%20a%20la%20cubana] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[NonUniqueResultException: Unique expecting 0 or 1 results but got [2]]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.NonUniqueResultException: Unique expecting 0 or 1 results but got [2]
+	at io.ebeaninternal.server.core.DefaultServer.extractUnique(DefaultServer.java:1153)
+	at io.ebeaninternal.server.core.DefaultServer.findOne(DefaultServer.java:1145)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findOne(DefaultOrmQuery.java:1510)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findOne(DefaultExpressionList.java:478)
+	at models.RecipeModel.findByTitle(RecipeModel.java:94)
+	at controllers.RecipeController.retrieveByTitle(RecipeController.java:348)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$24(Routes.scala:450)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 18:15:22 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 18:15:22 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-02-16 18:15:22 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-02-16 18:15:23 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-02-16 18:15:23 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-02-16 18:15:23 [1;31mERROR[0;39m [36mp.api.http.DefaultHttpErrorHandler[0;39m [35m[0;39m 
+
+! @80j6n0bp5 - Internal server error, for (GET) [/recipes/title/arroz%20a%20la%20cubana] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[NonUniqueResultException: Unique expecting 0 or 1 results but got [2]]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$2(HttpErrorHandler.scala:381)
+	at scala.Option.map(Option.scala:242)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:380)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:436)
+	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:428)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: javax.persistence.NonUniqueResultException: Unique expecting 0 or 1 results but got [2]
+	at io.ebeaninternal.server.core.DefaultServer.extractUnique(DefaultServer.java:1153)
+	at io.ebeaninternal.server.core.DefaultServer.findOne(DefaultServer.java:1145)
+	at io.ebeaninternal.server.querydefn.DefaultOrmQuery.findOne(DefaultOrmQuery.java:1510)
+	at io.ebeaninternal.server.expression.DefaultExpressionList.findOne(DefaultExpressionList.java:478)
+	at models.RecipeModel.findByTitle(RecipeModel.java:94)
+	at controllers.RecipeController.retrieveByTitle(RecipeController.java:348)
+	at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$24(Routes.scala:450)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:150)
+	at play.core.routing.HandlerInvokerFactory$$anon$8.resultCall(HandlerInvoker.scala:149)
+	at play.core.routing.HandlerInvokerFactory$JavaActionInvokerFactory$$anon$3$$anon$4$$anon$5.invocation(HandlerInvoker.scala:115)
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:119)
+	at play.http.DefaultActionCreator$1.call(DefaultActionCreator.java:33)
+	at play.cache.CachedAction.lambda$call$0(CachedAction.java:28)
+	at play.libs.Scala$2.apply(Scala.java:130)
+	at play.libs.Scala$2.apply(Scala.java:126)
+	at play.api.cache.ehcache.EhCacheApi.$anonfun$getOrElseUpdate$1(EhCacheApi.scala:254)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 12 common frames omitted
+2023-02-16 18:20:46 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2023-02-16 18:20:46 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2023-02-16 18:20:46 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2023-02-16 18:20:46 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-02-16 18:20:46 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks

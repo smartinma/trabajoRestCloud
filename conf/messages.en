@@ -1,6 +1,9 @@
 create=Will be created a new recipe with name:
-delete=Will be deleted a recipe with name:
+delete=Will be deleted a recipe with id:
 update=Will be updated a recipe with name:
-puntuate=Will be pointed a recipe with name:
+puntuate=Will be pointed a recipe with id:
 cached=Cached value
 notCached=Not cached value
+ingredient=Added ingredient:
+blank=This value cannot be blank
+required=This value is required

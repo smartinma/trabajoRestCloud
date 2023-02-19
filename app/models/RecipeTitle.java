@@ -11,15 +11,19 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class RecipeTitle extends Model{
 
+    //Relacion 1-1 titulo-receta
     @OneToOne(mappedBy = "title")
     public RecipeModel parentRecipe;
 
+    //Título unico de cada receta
     @Constraints.Required
-    @NotBlank
+    @NotBlank(message = "blank")
     public String title;
+
     @Id
     private Long id;
 
+    //Getters y setters
     public Long getId(){
         return id;
     }
@@ -39,6 +43,7 @@ public class RecipeTitle extends Model{
     public RecipeModel getParentRecipe() {
         return parentRecipe;
     }
+
     public void setParentRecipe(RecipeModel parentRecipe) {
         this.parentRecipe = parentRecipe;
     }

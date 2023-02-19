@@ -2,33 +2,38 @@ package views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import models.RecipeIngredient;
 import models.RecipeTitle;
 import models.RecipeModel;
 import models.RecipeValoration;
 import play.data.validation.Constraints;
 import play.libs.Json;
 
+import javax.validation.Constraint;
 import javax.validation.constraints.NotBlank;
 
 
 public class RecipeResource {
+
+    //Parámetros de la receta: nombre, tiempo maximo de elaboración, titulo y tipo de receta
     @JsonProperty("name")
-    @Constraints.Required
-    @NotBlank
+    @Constraints.Required(message = "required")
+    @NotBlank(message = "blank")
     private String name;
 
     @JsonProperty("time")
-    @Constraints.Required
+    @Constraints.Required(message = "required")
+    @Constraints.Min(1)
     private Integer time;
 
     @JsonProperty("title")
-    @Constraints.Required
-    @NotBlank
+    @Constraints.Required(message = "required")
+    @NotBlank(message = "blank")
     private String title;
 
     @JsonProperty("typeFood")
-    @Constraints.Required
-    @NotBlank
+    @Constraints.Required(message = "required")
+    @NotBlank(message = "blank")
     private String typeFood;
 
 
@@ -47,35 +52,37 @@ public class RecipeResource {
         RecipeTitle rt = recipeModel.getTitle();
 
         if(rt != null){
-            this.title = rt.getTitle();
+            this.title = rt.getTitle().replaceAll(" ","_");
         }
 
 
     }
 
-
+    //Conversion a JSON
     public JsonNode toJson() {
 
         return Json.toJson(this);
 
     }
 
+    //Conversion a modelo
     public RecipeModel toModel() {
 
         RecipeModel rm = new RecipeModel();
         RecipeTitle rt = new RecipeTitle();
-        RecipeValoration rv = new RecipeValoration();
 
         rm.setName(this.name.toLowerCase());
         rm.setTime(this.time);
         rm.setTypeFood(this.typeFood.toLowerCase());
 
-        rt.setTitle(this.title.toLowerCase());
+        rt.setTitle(this.title.toLowerCase().replaceAll(" ","_"));
         rm.setTitle(rt);
 
         return rm;
 
     }
+
+    //Getters y setters
     public String getName() {
 
         return name;
