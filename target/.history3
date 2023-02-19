@@ -521,3 +521,101 @@
 1675973398127:compile
 1675973431854:run
 1675973501104:exit
+1676045289912:h2-browser
+1676045298983:reload
+1676045305803:clean
+1676045308292:upload
+1676045313356:update
+1676045326080:compile
+1676047405995:testt
+1676047407788:test
+1676047534495:testOnly controllers.HomeControllerTest
+1676047743797:exit
+1676048249265:testOnly controllers.RecipeControllerRoutesTest
+1676048308439:testOnly controllers.HomeControllerTest
+1676048474133:testOnly controllers.RecipeControllerRoutesTest
+1676049492040:relaod
+1676049496328:reload
+1676049532434:compile
+1676049549471:testOnly controllers.RecipeControllerRoutesTest
+1676051775576:testOnly models
+1676051793948:testOnly models.testRecipeModel
+1676052577384:testOnly templates TemplatesRecipeTest
+1676053135866:testOnly templates.TemplatesRecipeTest
+1676053956062:reload
+1676053960987:clean
+1676053962837:compile
+1676054227397:h2-browser
+1676054240205:run
+1676059498619:exit
+1676306920430:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("C:/Users/Usuario/AppData/Local/Temp/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "C:/Users/Usuario/AppData/Roaming/JetBrains/IdeaIC2022.2/plugins/Scala/repo/org/jetbrains/scala/sbt-structure-extractor_2.12_1.0/2021.3.0/sbt-structure-extractor-2021.3.0.jar" org.jetbrains.sbt.CreateTasks;preferScala2;*/*:dumpStructure
+1676309063216:h2-browser
+1676309079292:clean
+1676309082141:update
+1676309100058:compile
+1676309121934:run
+1676373883360:compile
+1676373965935:clean
+1676373969294:update
+1676373993831:compile
+1676374025690:run
+1676375836935:reload
+1676375842769:clean
+1676375847977:com
+1676375851371:clean
+1676375855663:update
+1676375858142:compile
+1676375865060:run
+1676375976384:clean
+1676375978846:update
+1676375990607:compile
+1676376013279:run
+1676376745747:clean
+1676376748281:update
+1676376761892:compile
+1676376839236:run
+1676377250118:reload
+1676377259904:h2-browser
+1676377366510:sbt compile -Xlint:unchecked
+1676377381033:compile -Xlint:unchecked
+1676377404201:sbt compile -Xlint:unchecked
+1676377412114:compile -Xlint:unchecked
+1676377440062:compile /Xlint:unchecked
+1676377445011:compile -Xlint:unchecked
+1676377460799:run
+1676386606144:flywayMigrate
+1676386617560:reload
+1676386623795:clean
+1676386625584:compile
+1676386640192:run
+1676386820928:h2-browser
+1676386828567:run
+1676388607355:clean
+1676388609417:update
+1676388621298:compile
+1676388643933:run
+1676391546636:h2-browser
+1676391552890:run
+1676397603021:h2-browser
+1676397627573:run
+1676398227875:reload
+1676398233998:clean
+1676398236066:compile
+1676398283568:h2-browser
+1676398291799:run
+1676398767157:h2-browser
+1676398774162:run
+1676462562014:clean
+1676462565674:update
+1676462580540:compile
+1676462634340:run
+1676465834590:clean
+1676465837020:exit
+1676560460387:relaod
+1676560463271:reload
+1676560468558:clean
+1676560470420:update
+1676560486423:compile
+1676560627576:h2-browser
+1676560640675:run
+1676568049049:exit
