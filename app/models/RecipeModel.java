@@ -3,6 +3,7 @@ package models;
 
 import io.ebean.Finder;
 import io.ebean.Model;
+import jdk.jfr.Name;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class RecipeModel extends Model {
     private static final Finder<Long,RecipeModel> find = new Finder<>(RecipeModel.class);
 
     @Id
+    @Name("recipe_id")
     public Long id;
 
     /*PARAMETROS DE LA RECETA:
@@ -37,9 +39,31 @@ public class RecipeModel extends Model {
     public List<RecipeValoration> valorations;
 
     //Relación N-M, cada receta tiene ingredientes que pueden ser comunes con otras recetas
-    //@ManyToMany(cascade = CascadeType.ALL)
-    //public List<RecipeIngredient> ingredients = new ArrayList<RecipeIngredient>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<RecipeIngredient> ingredients;
 
+    public RecipeModel(){}
+
+    public RecipeModel(Long id, String name, Integer time, String typeFood, RecipeTitle title, List<RecipeValoration> valorations, List<RecipeIngredient> ingredients) {
+        this.id = id;
+        this.name = name;
+        this.time = time;
+        this.typeFood = typeFood;
+        this.title = title;
+        this.valorations = valorations;
+        this.ingredients = ingredients;
+    }
+
+    public RecipeModel(String dbName, Long id, String name, Integer time, String typeFood, RecipeTitle title, List<RecipeValoration> valorations, List<RecipeIngredient> ingredients) {
+        super(dbName);
+        this.id = id;
+        this.name = name;
+        this.time = time;
+        this.typeFood = typeFood;
+        this.title = title;
+        this.valorations = valorations;
+        this.ingredients = ingredients;
+    }
 
     //Metodos de acceso (base de datos) - Búsquedas
     //Por ID
@@ -91,9 +115,10 @@ public class RecipeModel extends Model {
     public static List<RecipeModel> findByValoration(Integer point) {
 
         return find.query()
+                .fetch("valorations")
                 .where()
-                .gt("puntuation", point)
-                .orderBy("puntuation")
+                .ge("valorations.puntuation", point)
+                .orderBy("name")
                 .findList();
     }
 
@@ -101,13 +126,15 @@ public class RecipeModel extends Model {
     //Por INGREDIENTE
     public static List<RecipeModel> findByIngredient(String ingredient) {
 
-        return (List<RecipeModel>) find.query()
+        return find.query()
+                .fetch("ingredients")
                 .where()
-                .eq("ingredients", ingredient.toLowerCase())
-                .orderBy("id")
+                .eq("ingredients.nombreIngrediente", ingredient.toLowerCase())
+                .orderBy("name")
                 .findList();
 
     }
+
 
     //TODAS las recetas
     public static List<RecipeModel> findAll() {
@@ -171,28 +198,34 @@ public class RecipeModel extends Model {
         this.typeFood = typeFood;
     }
 
-    //public List<RecipeIngredient> getIngredients() {
-    //    return ingredients;
-    //}
 
-    //public void setIngredients(List<RecipeIngredient> ingredients) {
-    //   this.ingredients = ingredients;
-    //}
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+       this.ingredients = ingredients;
+    }
+
     public void addValoration(RecipeValoration recipeValoration){
         if(this.valorations == null){
             this.valorations = new ArrayList<>();
         }
 
         this.valorations.add(recipeValoration);
-        recipeValoration.parentRecipe = this;
+        recipeValoration.setParentRecipe(this);
     }
 
-    //public void addIngredient(RecipeIngredient recipeIngredient){
-    //    if(this.ingredients == null){
-    //        this.ingredients = new ArrayList<>();
-    //    }
-    //
-    //    this.ingredients.add(recipeIngredient);
-    //    recipeIngredient.parentRecipe = (Set<RecipeModel>) this;
-    //}
+
+    public void addIngredient(RecipeIngredient recipeIngredient){
+        ArrayList<RecipeModel> tmp = new ArrayList<>();
+        tmp.add(this);
+        if(this.ingredients == null){
+            this.ingredients = new ArrayList<>();
+        }
+
+        this.ingredients.add(recipeIngredient);
+        recipeIngredient.setParentRecipe(tmp);
+    }
+
 }

@@ -38,6 +38,12 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "recipes/ingredient/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("ingredient", ingredient)))
     }
   
+    // @LINE:69
+    def inputIngredientsRecipe(id:Integer, ingredient:String): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "recipe/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)) + "/ingredients/" + implicitly[play.api.mvc.PathBindable[String]].unbind("ingredient", ingredient))
+    }
+  
     // @LINE:64
     def valorateRecipe(id:Integer, point:Integer): Call = {
       
@@ -59,7 +65,7 @@ package controllers {
     // @LINE:44
     def retrieveByTitle(title:String): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "recipe/title/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("title", title)))
+      Call("GET", _prefix + { _defaultPrefix } + "recipes/title/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("title", title)))
     }
   
     // @LINE:54
@@ -83,7 +89,7 @@ package controllers {
     // @LINE:49
     def retrieveAllByValoration(point:Integer): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "recipe/puntuation/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("point", point)))
+      Call("GET", _prefix + { _defaultPrefix } + "recipes/puntuation/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("point", point)))
     }
   
     // @LINE:29

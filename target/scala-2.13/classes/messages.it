@@ -1,6 +1,7 @@
 create=La ricetta denominata verrà creata:
-delete=La ricetta denominata verrà eliminata:
+delete=La ricetta id verrà eliminata:
 update=La ricetta denominata verrà modificata:
-puntuate=La ricetta denominata verrà valutata:
+puntuate=La ricetta id verrà valutata:
 cached=Valore memorizzato nella cache
 notCached=Valore non memorizzato nella cache
+ingredient=Ingrediente aggiunto:

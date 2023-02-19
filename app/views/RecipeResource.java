@@ -2,16 +2,19 @@ package views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import models.RecipeIngredient;
 import models.RecipeTitle;
 import models.RecipeModel;
 import models.RecipeValoration;
 import play.data.validation.Constraints;
 import play.libs.Json;
 
+import javax.validation.Constraint;
 import javax.validation.constraints.NotBlank;
 
 
 public class RecipeResource {
+
     @JsonProperty("name")
     @Constraints.Required
     @NotBlank
@@ -19,6 +22,7 @@ public class RecipeResource {
 
     @JsonProperty("time")
     @Constraints.Required
+    @Constraints.Min(1)
     private Integer time;
 
     @JsonProperty("title")
@@ -64,7 +68,6 @@ public class RecipeResource {
 
         RecipeModel rm = new RecipeModel();
         RecipeTitle rt = new RecipeTitle();
-        RecipeValoration rv = new RecipeValoration();
 
         rm.setName(this.name.toLowerCase());
         rm.setTime(this.time);

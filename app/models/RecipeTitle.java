@@ -39,6 +39,7 @@ public class RecipeTitle extends Model{
     public RecipeModel getParentRecipe() {
         return parentRecipe;
     }
+
     public void setParentRecipe(RecipeModel parentRecipe) {
         this.parentRecipe = parentRecipe;
     }

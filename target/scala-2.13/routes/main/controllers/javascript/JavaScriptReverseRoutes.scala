@@ -48,6 +48,16 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:69
+    def inputIngredientsRecipe: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.RecipeController.inputIngredientsRecipe",
+      """
+        function(id0,ingredient1) {
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("id", id0)) + "/ingredients/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("ingredient", ingredient1)})
+        }
+      """
+    )
+  
     // @LINE:64
     def valorateRecipe: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.RecipeController.valorateRecipe",
@@ -83,7 +93,7 @@ package controllers.javascript {
       "controllers.RecipeController.retrieveByTitle",
       """
         function(title0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/title/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("title", title0))})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipes/title/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("title", title0))})
         }
       """
     )
@@ -123,7 +133,7 @@ package controllers.javascript {
       "controllers.RecipeController.retrieveAllByValoration",
       """
         function(point0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/puntuation/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("point", point0))})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipes/puntuation/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("point", point0))})
         }
       """
     )

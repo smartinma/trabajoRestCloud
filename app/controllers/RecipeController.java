@@ -73,29 +73,19 @@ public class RecipeController extends Controller{
         //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
-        //Obtener los datos de la petición de eliminado mediante formulario
-        Form<RecipeInputResource> deleteRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
-        RecipeInputResource recipeResource;
-
         //Búsqueda por id de la receta a eliminar
-        RecipeModel um = RecipeModel.findById(Long.valueOf(id));
+        RecipeModel rm = RecipeModel.findById(Long.valueOf(id));
 
-        if (um == null) {
+        if (rm == null) {
             return Results.notFound();
 
         }else{
-            //Gestión de errores
-            if(deleteRecipeForm.hasErrors()){
-                return Results.badRequest(deleteRecipeForm.errorsAsJson());
 
-            }else{
-                recipeResource = deleteRecipeForm.get();
                 String msg = messages.at("delete");
-                um.delete(id);
+                rm.delete(id);
 
-                return Results.ok(msg+" "+ recipeResource.getName());
+                return Results.ok(msg+" "+ id);
 
-            }
 
         }
 
@@ -123,11 +113,12 @@ public class RecipeController extends Controller{
             }else{
                 recipeResource = newRecipeForm.get();
                 RecipeTitle rt = recipeResource.toModel().getTitle();
+                rt.setTitle(rt.getTitle().toLowerCase());
 
                 String msg = messages.at("update");
-                um.setName(recipeResource.getName());
+                um.setName(recipeResource.getName().toLowerCase());
                 um.setTime(recipeResource.getTime());
-                um.setTypeFood(recipeResource.getTypeFood());
+                um.setTypeFood(recipeResource.getTypeFood().toLowerCase());
                 um.setTitle(rt);
 
                 //Actualizacion de datos en el modelo
@@ -151,23 +142,13 @@ public class RecipeController extends Controller{
         //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
-        //Obtener los datos nuevos de la petición de modificación mediante formulario
-        Form<RecipeInputResource> newRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
-        RecipeInputResource recipeResource;
-
         //Búsqueda de la receta a valorar por id
         RecipeModel um = RecipeModel.findById(Long.valueOf(id));
 
         if (um == null) {
             return Results.notFound();
         }else{
-            //Gestión de errores
-            if(newRecipeForm.hasErrors()){
-                return Results.badRequest(newRecipeForm.errorsAsJson());
-
-            }else{
-                recipeResource = newRecipeForm.get();
-                RecipeValoration rv = new RecipeValoration();
+              RecipeValoration rv = new RecipeValoration();
                 rv.setPuntuation(point);
 
                 String msg = messages.at("puntuate");
@@ -181,22 +162,22 @@ public class RecipeController extends Controller{
                 ObjectNode jsonResult = Json.newObject();
                 jsonResult.put("id", um.getId());
 
-                return Results.ok(msg+" "+ recipeResource.getName());
+                return Results.ok(msg+" "+ id);
 
             }
 
-        }
 
     }
 
-    /*public Result inputIngredientsRecipe(Http.Request req, Integer id, String ingredient) {
+
+    public Result inputIngredientsRecipe(Http.Request req, Integer id, String ingredient) {
 
         //Internacionalización de la API mediante idiomas
         Messages messages = messagesApi.preferred(req);
 
         //Obtener los datos nuevos de la petición de modificación mediante formulario
-        Form<RecipeInputResource> newRecipeForm = formFactory.form(RecipeInputResource.class).bindFromRequest(req);
-        RecipeInputResource recipeResource;
+        Form<RecipeIngredient> newIngredientForm = formFactory.form(RecipeIngredient.class).bindFromRequest(req);
+        RecipeIngredient recipeIngredient;
 
         //Búsqueda de la receta a valorar por id
         RecipeModel um = RecipeModel.findById(Long.valueOf(id));
@@ -205,35 +186,35 @@ public class RecipeController extends Controller{
             return Results.notFound();
         }else{
             //Gestión de errores
-            if(newRecipeForm.hasErrors()){
-                return Results.badRequest(newRecipeForm.errorsAsJson());
+            if(newIngredientForm.hasErrors()){
+                return Results.badRequest(newIngredientForm.errorsAsJson());
 
             }else{
-                recipeResource = newRecipeForm.get();
-                RecipeIngredient ri = new RecipeIngredient();
-                ri.setNombreIngrediente(ingredient);
 
-                String msg = messages.at("puntuate");
-                um.addIngredient(ri);
-
-                //Actualizacion de datos en el modelo
+                recipeIngredient = newIngredientForm.get();
+                um.getIngredients().add(recipeIngredient);
                 um.save();
                 um.refresh();
+
+
+                String msg = messages.at("ingredient");
+                um.addIngredient(recipeIngredient);
 
                 //Conversión a JSON
                 ObjectNode jsonResult = Json.newObject();
                 jsonResult.put("id", um.getId());
 
-                return Results.ok(msg+" "+ recipeResource.getName());
+                return Results.ok(msg+" "+ recipeIngredient.getNombreIngrediente());
 
             }
 
         }
 
-    }*/
+    }
 
 
-    @Cached(key="recipe-view", duration = 10)
+
+    @Cached(key="recipe-view", duration = 5)
     public Result retrieveById(Http.Request req, Integer id) {
 
         //Internacionalización de la API mediante idiomas
@@ -277,7 +258,7 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-view", duration = 10)
+    @Cached(key="all-recipes-view", duration = 5)
     public Result retrieveAll(Http.Request req) {
 
         //Internacionalización de la API mediante idiomas
@@ -323,7 +304,7 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-type-view", duration = 10)
+    @Cached(key="all-recipes-by-type-view", duration = 5)
     public Result retrieveAllByType(Http.Request req, String typeFood) {
 
         //Internacionalización de la API mediante idiomas
@@ -369,7 +350,7 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="recipe-by-title-view", duration = 10)
+    @Cached(key="recipe-by-title-view", duration = 5)
     public Result retrieveByTitle(Http.Request req, String title) {
 
         //Internacionalización de la API mediante idiomas
@@ -413,7 +394,7 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-time-view", duration = 10)
+    @Cached(key="all-recipes-by-time-view", duration = 5)
     public Result retrieveAllByTime(Http.Request req, Integer time) {
 
         //Internacionalización de la API mediante idiomas
@@ -459,7 +440,8 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-ingredient-view", duration = 10)
+
+    @Cached(key="all-recipes-by-ingredient-view", duration = 5)
     public Result retrieveAllByIngredient(Http.Request req, String ingredient) {
 
         //Internacionalización de la API mediante idiomas
@@ -505,7 +487,8 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-name-view", duration = 10)
+
+    @Cached(key="all-recipes-by-name-view", duration = 5)
     public Result retrieveAllByName(Http.Request req, String name) {
 
         //Internacionalización de la API mediante idiomas
@@ -551,7 +534,7 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="all-recipes-by-valoration-view", duration = 10)
+    @Cached(key="all-recipes-by-valoration-view", duration = 5)
     public Result retrieveAllByValoration(Http.Request req, Integer point) {
 
         //Internacionalización de la API mediante idiomas

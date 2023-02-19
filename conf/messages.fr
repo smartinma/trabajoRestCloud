@@ -1,6 +1,7 @@
 create=La recette nommée sera créée:
-delete=La recette nommée sera supprimée:
+delete=La recette id sera supprimée:
 update=La recette nommée sera modifiée:
-puntuate=La recette nommée sera notée:
+puntuate=La recette id sera notée:
 cached=Valeur en cache
 notCached=Valeur non mise en cache
+ingredient=Ingrédient ajouté:

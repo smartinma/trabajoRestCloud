@@ -41,22 +41,22 @@ GET    /recipes/time/:time    controllers.RecipeController.retrieveAllByTime(req
 ##########################################################################################
 #7-Obtener una receta por su titulo unico
 ##########################################################################################
-GET    /recipe/title/:title    controllers.RecipeController.retrieveByTitle(req: Request, title: String)
+GET    /recipes/title/:title    controllers.RecipeController.retrieveByTitle(req: Request, title: String)
 
 ##########################################################################################
 #8-Obtener una receta por su valoracion
 ##########################################################################################
-GET    /recipe/puntuation/:point    controllers.RecipeController.retrieveAllByValoration(req: Request, point: Integer)
+GET    /recipes/puntuation/:point    controllers.RecipeController.retrieveAllByValoration(req: Request, point: Integer)
 
 ##########################################################################################
-#9-Actualizar una receta por id
+#9-Actualizar una receta por id con body JSON
 ##########################################################################################
 PUT    /recipe/:id    controllers.RecipeController.update(req: Request, id: Integer)
 
 ##########################################################################################
 #10-Eliminar una receta por id
 ##########################################################################################
-DELETE /recipe/:id    controllers.RecipeController.delete(req: Request, id: Integer)
+DELETE  /recipe/:id    controllers.RecipeController.delete(req: Request, id: Integer)
 
 ##########################################################################################
 #11-Puntuar una receta por su id
@@ -66,7 +66,7 @@ PUT     /recipe/:id/point/:point    controllers.RecipeController.valorateRecipe(
 ##########################################################################################
 #12-Añadir ingredientes a una receta
 ##########################################################################################
-#PUT     /recipe/:id/ingredients/*ingredient    controllers.RecipeController.inputIngredientsRecipe(req: Request, id: Integer, ingredient: String)
+PUT     /recipe/:id/ingredients/*ingredient    controllers.RecipeController.inputIngredientsRecipe(req: Request, id: Integer, ingredient: String)
 
 ##########################################################################################
 #13-Listar todas las recetas
