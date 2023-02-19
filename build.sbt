@@ -13,4 +13,7 @@ libraryDependencies += jdbc
 libraryDependencies += ehcache
 libraryDependencies += "com.h2database" % "h2" % "1.4.200"
 libraryDependencies += "org.fusesource.jansi" % "jansi" % "1.17.1"
+libraryDependencies += "com.typesafe.play" %% "play-test" % "2.8.2" % Test
+
+
 

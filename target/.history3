@@ -398,3 +398,210 @@
 1675796334736:h2-browser
 1675796355498:run
 1675798488635:exit
+1675857018998:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("C:/Users/Usuario/AppData/Local/Temp/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "C:/Users/Usuario/AppData/Roaming/JetBrains/IdeaIC2022.2/plugins/Scala/repo/org/jetbrains/scala/sbt-structure-extractor_2.12_1.0/2021.3.0/sbt-structure-extractor-2021.3.0.jar" org.jetbrains.sbt.CreateTasks;preferScala2;*/*:dumpStructure
+1675857647923:clean
+1675857652222:compile
+1675857684053:run
+1675866470057:reload
+1675866475599:clean
+1675866478302:update
+1675866481779:compile
+1675866904553:run
+1675867005851:exit
+1675867046324:run
+1675874985040:h2-browser
+1675875065747:run
+1675884117160:reload
+1675884123739:clean
+1675884126099:update
+1675884141285:compile
+1675884152387:run
+1675884241433:exit
+1675884273040:compile
+1675884278233:run
+1675885764569:relaod
+1675885766618:reload
+1675885772084:clean
+1675885774188:update
+1675885784812:compile
+1675894396045:reload
+1675894400735:clear
+1675894403008:clean
+1675894405214:update
+1675894407928:compile
+1675894415499:run
+1675895394371:reload
+1675895400494:clean
+1675895404841:update
+1675895416787:compile
+1675895468288:compile -Xlint:unchecked
+1675895473669:compile ºXlint:unchecked
+1675895480897:compile/Xlint:unchecked
+1675895486576:compile/Xlint/unchecked
+1675895490013:compile
+1675895535584:run
+1675895692787:exit
+1675951660539:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("C:/Users/Usuario/AppData/Local/Temp/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "C:/Users/Usuario/AppData/Roaming/JetBrains/IdeaIC2022.2/plugins/Scala/repo/org/jetbrains/scala/sbt-structure-extractor_2.12_1.0/2021.3.0/sbt-structure-extractor-2021.3.0.jar" org.jetbrains.sbt.CreateTasks;preferScala2;*/*:dumpStructure
+1675952330213:run
+1675952374106:reload
+1675952379194:clean
+1675952384562:upte
+1675952388298:update
+1675952404298:compile
+1675952514001:run
+1675952535529:exit
+1675952557692:run
+1675953001215:h2-browser
+1675953008318:run
+1675958052341:exit
+1675958075115:clean
+1675958077558:update
+1675958092869:compile
+1675958115030:run
+1675958188141:exit
+1675958227265:run
+1675958635330:reload
+1675958641681:clean
+1675958643642:update
+1675958654439:compile
+1675958675712:run
+1675958787787:exit
+1675958807690:run
+1675958935212:h2-browser
+1675959164589:exit
+1675959218354:clean
+1675959220464:compile
+1675959252971:run
+1675960341140:run 9090
+1675960438790:build
+1675960517347:reload
+1675960522385:clean
+1675960524966:update
+1675960527990:cpmpile
+1675960530149:compile
+1675961029610:relaod
+1675961031665:reload
+1675961036530:clean
+1675961039799:compile
+1675961052128:run
+1675961170427:exit
+1675961316644:clean
+1675961318158:update
+1675961329823:compile
+1675961351238:run
+1675961446130:exot
+1675961448878:exit
+1675967371183:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("C:/Users/Usuario/AppData/Local/Temp/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "C:/Users/Usuario/AppData/Roaming/JetBrains/IdeaIC2022.2/plugins/Scala/repo/org/jetbrains/scala/sbt-structure-extractor_2.12_1.0/2021.3.0/sbt-structure-extractor-2021.3.0.jar" org.jetbrains.sbt.CreateTasks;preferScala2;*/*:dumpStructure
+1675967483913:clean
+1675967485917:compile
+1675967542646:run
+1675967765717:exit
+1675967799177:clean
+1675967801756:compile
+1675967851100:run
+1675968437136:h2-browser
+1675968450984:run
+1675969003594:clean
+1675969005164:reload
+1675969012413:clean
+1675969014180:update
+1675969034692:compuile
+1675969859715:run
+1675969931871:h2-browser
+1675969955967:run
+1675972480967:reload
+1675972490247:clean
+1675972492343:update
+1675972510903:compile
+1675972536607:run
+1675972644438:reload
+1675972649966:run
+1675973322845:clean
+1675973324850:update
+1675973398127:compile
+1675973431854:run
+1675973501104:exit
+1676045289912:h2-browser
+1676045298983:reload
+1676045305803:clean
+1676045308292:upload
+1676045313356:update
+1676045326080:compile
+1676047405995:testt
+1676047407788:test
+1676047534495:testOnly controllers.HomeControllerTest
+1676047743797:exit
+1676048249265:testOnly controllers.RecipeControllerRoutesTest
+1676048308439:testOnly controllers.HomeControllerTest
+1676048474133:testOnly controllers.RecipeControllerRoutesTest
+1676049492040:relaod
+1676049496328:reload
+1676049532434:compile
+1676049549471:testOnly controllers.RecipeControllerRoutesTest
+1676051775576:testOnly models
+1676051793948:testOnly models.testRecipeModel
+1676052577384:testOnly templates TemplatesRecipeTest
+1676053135866:testOnly templates.TemplatesRecipeTest
+1676053956062:reload
+1676053960987:clean
+1676053962837:compile
+1676054227397:h2-browser
+1676054240205:run
+1676059498619:exit
+1676306920430:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("C:/Users/Usuario/AppData/Local/Temp/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "C:/Users/Usuario/AppData/Roaming/JetBrains/IdeaIC2022.2/plugins/Scala/repo/org/jetbrains/scala/sbt-structure-extractor_2.12_1.0/2021.3.0/sbt-structure-extractor-2021.3.0.jar" org.jetbrains.sbt.CreateTasks;preferScala2;*/*:dumpStructure
+1676309063216:h2-browser
+1676309079292:clean
+1676309082141:update
+1676309100058:compile
+1676309121934:run
+1676373883360:compile
+1676373965935:clean
+1676373969294:update
+1676373993831:compile
+1676374025690:run
+1676375836935:reload
+1676375842769:clean
+1676375847977:com
+1676375851371:clean
+1676375855663:update
+1676375858142:compile
+1676375865060:run
+1676375976384:clean
+1676375978846:update
+1676375990607:compile
+1676376013279:run
+1676376745747:clean
+1676376748281:update
+1676376761892:compile
+1676376839236:run
+1676377250118:reload
+1676377259904:h2-browser
+1676377366510:sbt compile -Xlint:unchecked
+1676377381033:compile -Xlint:unchecked
+1676377404201:sbt compile -Xlint:unchecked
+1676377412114:compile -Xlint:unchecked
+1676377440062:compile /Xlint:unchecked
+1676377445011:compile -Xlint:unchecked
+1676377460799:run
+1676386606144:flywayMigrate
+1676386617560:reload
+1676386623795:clean
+1676386625584:compile
+1676386640192:run
+1676386820928:h2-browser
+1676386828567:run
+1676388607355:clean
+1676388609417:update
+1676388621298:compile
+1676388643933:run
+1676391546636:h2-browser
+1676391552890:run
+1676397603021:h2-browser
+1676397627573:run
+1676398227875:reload
+1676398233998:clean
+1676398236066:compile
+1676398283568:h2-browser
+1676398291799:run
+1676398767157:h2-browser
+1676398774162:run

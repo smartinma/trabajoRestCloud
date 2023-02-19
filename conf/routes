@@ -16,20 +16,60 @@ POST    /recipes  controllers.RecipeController.create(req: Request)
 ##########################################################################################
 #2-Obtener una receta por su id
 ##########################################################################################
-GET    /recipe/:id    controllers.RecipeController.retrieve(req: Request, id: Integer)
+GET    /recipe/:id    controllers.RecipeController.retrieveById(req: Request, id: Integer)
 
 ##########################################################################################
-#3-Actualizar una receta
+#3-Obtener una receta por su tipo de alimentación
+##########################################################################################
+GET    /recipes/type/:typeFood   controllers.RecipeController.retrieveAllByType(req: Request, typeFood: String)
+
+##########################################################################################
+#4-Obtener una receta por su nombre genérico
+##########################################################################################
+GET    /recipes/name/:name    controllers.RecipeController.retrieveAllByName(req: Request, name: String)
+
+##########################################################################################
+#5-Obtener una receta por alguno de sus ingredientes
+##########################################################################################
+GET    /recipes/ingredient/:ingredient   controllers.RecipeController.retrieveAllByIngredient(req: Request, ingredient: String)
+
+##########################################################################################
+#6-Obtener una receta por su tiempo de preparación
+##########################################################################################
+GET    /recipes/time/:time    controllers.RecipeController.retrieveAllByTime(req: Request, time: Integer)
+
+##########################################################################################
+#7-Obtener una receta por su titulo unico
+##########################################################################################
+GET    /recipes/title/:title    controllers.RecipeController.retrieveByTitle(req: Request, title: String)
+
+##########################################################################################
+#8-Obtener una receta por su valoracion
+##########################################################################################
+GET    /recipes/puntuation/:point    controllers.RecipeController.retrieveAllByValoration(req: Request, point: Integer)
+
+##########################################################################################
+#9-Actualizar una receta por id con body JSON
 ##########################################################################################
 PUT    /recipe/:id    controllers.RecipeController.update(req: Request, id: Integer)
 
 ##########################################################################################
-#4-Eliminar una receta
+#10-Eliminar una receta por id
 ##########################################################################################
-DELETE /recipe/:id    controllers.RecipeController.delete(req: Request, id: Integer)
+DELETE  /recipe/:id    controllers.RecipeController.delete(req: Request, id: Integer)
 
 ##########################################################################################
-#5-Listar todas las recetas
+#11-Puntuar una receta por su id
+##########################################################################################
+PUT     /recipe/:id/point/:point    controllers.RecipeController.valorateRecipe(req: Request, id: Integer, point: Integer)
+
+##########################################################################################
+#12-Añadir ingredientes a una receta
+##########################################################################################
+PUT     /recipe/:id/ingredients/*ingredient    controllers.RecipeController.inputIngredientsRecipe(req: Request, id: Integer, ingredient: String)
+
+##########################################################################################
+#13-Listar todas las recetas
 ##########################################################################################
 GET    /recipes   controllers.RecipeController.retrieveAll(req: Request)
 
