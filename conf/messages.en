@@ -7,3 +7,5 @@ notCached=Not cached value
 ingredient=Added ingredient:
 blank=This value cannot be blank
 required=This value is required
+ingredientExists=This ingredient exists
+titleExists=This title exists

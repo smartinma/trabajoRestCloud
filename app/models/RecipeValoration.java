@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class RecipeValoration extends Model {
 
-    //Relación 1-N receta-valoraciones
+
     @ManyToOne()
     public RecipeModel parentRecipe;
 
@@ -20,7 +20,6 @@ public class RecipeValoration extends Model {
     @Id
     private Long id;
 
-    //Getters y setters
     public Long getId(){
         return id;
     }

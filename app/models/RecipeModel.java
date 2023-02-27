@@ -23,9 +23,9 @@ public class RecipeModel extends Model {
         -Tipo de Receta: tipo de receta para el consumidor, si es vegana, vegetariana, con alergenos...etc
         -Tiempo de Preparación: tiempo máximo estimado de preparación de la receta
         *Relaciones:
-            -Título único (1-1): nombre único de la receta, no hay dos iguales, por ejemplo cocido madrileño, cocido montañés...
-            -Valoraciones (1-N): valoraciones/puntuaciones de los usuarios a la receta
-            -Ingredientes (N-M): ingredientes que componen las recetas
+            -Título único (1-1): nombre único de la receta, no hay dos iguales, por ejemplo cocido madrileño.
+            -Valoraciones (1-N): valoraciones/puntuaciones de la receta
+            -Ingredientes (N-M): ingredientes que componen las recetas, ingredientes únicos pero comunes
      */
 
     public String name;
@@ -137,7 +137,6 @@ public class RecipeModel extends Model {
                 .findList();
 
     }
-
 
     //TODAS las recetas
     public static List<RecipeModel> findAll() {

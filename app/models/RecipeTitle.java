@@ -1,5 +1,6 @@
 package models;
 
+import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
 
@@ -10,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class RecipeTitle extends Model{
+
+    private static final Finder<Long,RecipeTitle> find = new Finder<>(RecipeTitle.class);
 
     //Relacion 1-1 titulo-receta
     @OneToOne(mappedBy = "title")
@@ -46,5 +49,14 @@ public class RecipeTitle extends Model{
 
     public void setParentRecipe(RecipeModel parentRecipe) {
         this.parentRecipe = parentRecipe;
+    }
+
+    public static RecipeTitle findByTitle(String title) {
+
+        return find.query()
+                .where()
+                .eq("title", title.toLowerCase())
+                .orderBy("id")
+                .findOne();
     }
 }

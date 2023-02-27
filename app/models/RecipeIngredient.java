@@ -1,7 +1,9 @@
 package models;
 
+import io.ebean.Finder;
 import io.ebean.Model;
 import jdk.jfr.Name;
+import org.checkerframework.common.aliasing.qual.Unique;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Entity
 public class RecipeIngredient extends Model {
+
+    private static final Finder<Long,RecipeIngredient> finder = new Finder<>(RecipeIngredient.class);
 
     @Id
     @Name("ingredient_id")
@@ -62,5 +66,14 @@ public class RecipeIngredient extends Model {
 
     public void setNombreIngrediente(String nombreIngrediente) {
         this.nombreIngrediente = nombreIngrediente;
+    }
+
+    public static RecipeIngredient findByIngredientName(String ingredientName) {
+
+        return finder.query()
+                .where()
+                .eq("nombreIngrediente", ingredientName.toLowerCase())
+                .orderBy("id")
+                .findOne();
     }
 }

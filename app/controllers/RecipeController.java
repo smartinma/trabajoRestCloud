@@ -53,6 +53,14 @@ public class RecipeController extends Controller{
         }else{
             recipeResource = recipeForm.get();
 
+            RecipeTitle rt = RecipeTitle.findByTitle(recipeResource.getTitle());
+
+            if(rt != null){
+                //Titulo ya existente en el modelo
+                String ms = messages.at("titleExists");
+                return Results.unauthorized(ms);
+            }
+
         }
 
         //Creación de la receta y conversión a modelo
@@ -179,9 +187,32 @@ public class RecipeController extends Controller{
             }else{
 
                 recipeIngredient = newIngredientForm.get();
-                rm.getIngredients().add(recipeIngredient);
-                rm.save();
-                rm.refresh();
+
+                RecipeIngredient ri = RecipeIngredient.findByIngredientName(recipeIngredient.getNombreIngrediente());
+
+                for(int i = 0; i< rm.getIngredients().size(); i++){
+
+                    if(rm.getIngredients().get(i).getNombreIngrediente()!= null && rm.getIngredients().get(i).getNombreIngrediente().equals(recipeIngredient.getNombreIngrediente())){
+
+                        //Ingrediente ya creado en la receta
+                        String ms = messages.at("ingredientExists");
+                        return Results.unauthorized(ms);
+                    }
+                }
+
+                //Si no existe ese ingrediente en el modelo lo creamos y añadimos
+                if(ri == null){
+                    rm.getIngredients().add(recipeIngredient);
+                    rm.save();
+                    rm.refresh();
+
+                }else{
+                    //Si existe, actualizamos la relacion del ingrediente existente con la receta
+                    rm.getIngredients().add(ri);
+                    rm.save();
+                    rm.refresh();
+
+                }
 
 
                 String msg = messages.at("ingredient");
@@ -457,7 +488,6 @@ public class RecipeController extends Controller{
         return res;
 
     }
-
 
     @Cached(key="all-recipes-by-name-view", duration = 5)
     public Result retrieveAllByName(Http.Request req, String name) {

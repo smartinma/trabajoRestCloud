@@ -7,3 +7,5 @@ notCached=Valor no cacheado
 ingredient=Ingrediente añadido:
 blank=Este valor no puede quedar en blanco
 required=Este valor es requerido
+ingredientExists=Este ingrediente ya existe
+titleExists=Este titulo ya existe
