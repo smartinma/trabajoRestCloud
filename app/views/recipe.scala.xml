@@ -1,6 +1,7 @@
-@(name: String, age: Integer)
-        <?xml version="1.0" encoding="utf-8" ?>
+@(name: String, time: Integer, title: String, typeFood: String)
 <recipe>
-    @_name_tag(name)
-    <age>@(age)</age>
+    <name>@(name)</name>
+    <time>@(time)</time>
+    <typeFood>@(typeFood)</typeFood>
+    <title>@(title)</title>
 </recipe>
