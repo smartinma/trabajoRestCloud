@@ -48,26 +48,6 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:69
-    def inputIngredientsRecipe: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.RecipeController.inputIngredientsRecipe",
-      """
-        function(id0,ingredient1) {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("id", id0)) + "/ingredients/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("ingredient", ingredient1)})
-        }
-      """
-    )
-  
-    // @LINE:64
-    def valorateRecipe: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.RecipeController.valorateRecipe",
-      """
-        function(id0,point1) {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("id", id0)) + "/point/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("point", point1))})
-        }
-      """
-    )
-  
     // @LINE:39
     def retrieveAllByTime: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.RecipeController.retrieveAllByTime",
@@ -132,8 +112,8 @@ package controllers.javascript {
     def retrieveAllByValoration: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.RecipeController.retrieveAllByValoration",
       """
-        function(point0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipes/puntuation/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("point", point0))})
+        function(puntuation0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipes/puntuation/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("puntuation", puntuation0))})
         }
       """
     )
@@ -144,6 +124,26 @@ package controllers.javascript {
       """
         function(name0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "recipes/name/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("name", name0))})
+        }
+      """
+    )
+  
+    // @LINE:64
+    def valorateRecipe: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.RecipeController.valorateRecipe",
+      """
+        function(id0) {
+          return _wA({method:"PATCH", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("id", id0)) + "/puntuation"})
+        }
+      """
+    )
+  
+    // @LINE:69
+    def inputIngredientsRecipe: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.RecipeController.inputIngredientsRecipe",
+      """
+        function(id0) {
+          return _wA({method:"PATCH", url:"""" + _prefix + { _defaultPrefix } + """" + "recipe/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("id", id0)) + "/ingredient"})
         }
       """
     )

@@ -5,3 +5,7 @@ puntuate=La ricetta id verrà valutata:
 cached=Valore memorizzato nella cache
 notCached=Valore non memorizzato nella cache
 ingredient=Ingrediente aggiunto:
+blank=Questo valore non può essere vuoto
+required=Questo valore è obbligatorio
+ingredientExists=Questo ingredientti é creatto
+titleExists=Questo titulo é creatto

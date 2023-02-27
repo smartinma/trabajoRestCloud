@@ -51,11 +51,11 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipes/ingredient/""" + "$" + """ingredient<[^/]+>""", """controllers.RecipeController.retrieveAllByIngredient(req:Request, ingredient:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipes/time/""" + "$" + """time<[^/]+>""", """controllers.RecipeController.retrieveAllByTime(req:Request, time:Integer)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipes/title/""" + "$" + """title<[^/]+>""", """controllers.RecipeController.retrieveByTitle(req:Request, title:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipes/puntuation/""" + "$" + """point<[^/]+>""", """controllers.RecipeController.retrieveAllByValoration(req:Request, point:Integer)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipes/puntuation/""" + "$" + """puntuation<[^/]+>""", """controllers.RecipeController.retrieveAllByValoration(req:Request, puntuation:Integer)"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipe/""" + "$" + """id<[^/]+>""", """controllers.RecipeController.update(req:Request, id:Integer)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipe/""" + "$" + """id<[^/]+>""", """controllers.RecipeController.delete(req:Request, id:Integer)"""),
-    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipe/""" + "$" + """id<[^/]+>/point/""" + "$" + """point<[^/]+>""", """controllers.RecipeController.valorateRecipe(req:Request, id:Integer, point:Integer)"""),
-    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipe/""" + "$" + """id<[^/]+>/ingredients/""" + "$" + """ingredient<.+>""", """controllers.RecipeController.inputIngredientsRecipe(req:Request, id:Integer, ingredient:String)"""),
+    ("""PATCH""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipe/""" + "$" + """id<[^/]+>/puntuation""", """controllers.RecipeController.valorateRecipe(req:Request, id:Integer)"""),
+    ("""PATCH""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipe/""" + "$" + """id<[^/]+>/ingredient""", """controllers.RecipeController.inputIngredientsRecipe(req:Request, id:Integer)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """recipes""", """controllers.RecipeController.retrieveAll(req:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
@@ -243,7 +243,7 @@ class Routes(
 
   // @LINE:49
   private[this] lazy val controllers_RecipeController_retrieveAllByValoration8_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("recipes/puntuation/"), DynamicPart("point", """[^/]+""",true)))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("recipes/puntuation/"), DynamicPart("puntuation", """[^/]+""",true)))
   )
   private[this] lazy val controllers_RecipeController_retrieveAllByValoration8_invoker = createInvoker(
     
@@ -255,9 +255,9 @@ class Routes(
       "retrieveAllByValoration",
       Seq(classOf[play.mvc.Http.Request], classOf[Integer]),
       "GET",
-      this.prefix + """recipes/puntuation/""" + "$" + """point<[^/]+>""",
+      this.prefix + """recipes/puntuation/""" + "$" + """puntuation<[^/]+>""",
       """#########################################################################################
-8-Obtener una receta por su valoracion
+8-Obtener una receta por su puntuacion
 #########################################################################################""",
       Seq()
     )
@@ -279,7 +279,7 @@ class Routes(
       "PUT",
       this.prefix + """recipe/""" + "$" + """id<[^/]+>""",
       """#########################################################################################
-9-Actualizar una receta por id con body JSON
+9-Actualizar una receta por id
 #########################################################################################""",
       Seq()
     )
@@ -308,44 +308,44 @@ class Routes(
   )
 
   // @LINE:64
-  private[this] lazy val controllers_RecipeController_valorateRecipe11_route = Route("PUT",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("recipe/"), DynamicPart("id", """[^/]+""",true), StaticPart("/point/"), DynamicPart("point", """[^/]+""",true)))
+  private[this] lazy val controllers_RecipeController_valorateRecipe11_route = Route("PATCH",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("recipe/"), DynamicPart("id", """[^/]+""",true), StaticPart("/puntuation")))
   )
   private[this] lazy val controllers_RecipeController_valorateRecipe11_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      RecipeController_1.valorateRecipe(fakeValue[play.mvc.Http.Request], fakeValue[Integer], fakeValue[Integer]),
+      RecipeController_1.valorateRecipe(fakeValue[play.mvc.Http.Request], fakeValue[Integer]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.RecipeController",
       "valorateRecipe",
-      Seq(classOf[play.mvc.Http.Request], classOf[Integer], classOf[Integer]),
-      "PUT",
-      this.prefix + """recipe/""" + "$" + """id<[^/]+>/point/""" + "$" + """point<[^/]+>""",
+      Seq(classOf[play.mvc.Http.Request], classOf[Integer]),
+      "PATCH",
+      this.prefix + """recipe/""" + "$" + """id<[^/]+>/puntuation""",
       """#########################################################################################
-11-Puntuar una receta por su id
+11-Puntuar una receta por id
 #########################################################################################""",
       Seq()
     )
   )
 
   // @LINE:69
-  private[this] lazy val controllers_RecipeController_inputIngredientsRecipe12_route = Route("PUT",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("recipe/"), DynamicPart("id", """[^/]+""",true), StaticPart("/ingredients/"), DynamicPart("ingredient", """.+""",false)))
+  private[this] lazy val controllers_RecipeController_inputIngredientsRecipe12_route = Route("PATCH",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("recipe/"), DynamicPart("id", """[^/]+""",true), StaticPart("/ingredient")))
   )
   private[this] lazy val controllers_RecipeController_inputIngredientsRecipe12_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      RecipeController_1.inputIngredientsRecipe(fakeValue[play.mvc.Http.Request], fakeValue[Integer], fakeValue[String]),
+      RecipeController_1.inputIngredientsRecipe(fakeValue[play.mvc.Http.Request], fakeValue[Integer]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.RecipeController",
       "inputIngredientsRecipe",
-      Seq(classOf[play.mvc.Http.Request], classOf[Integer], classOf[String]),
-      "PUT",
-      this.prefix + """recipe/""" + "$" + """id<[^/]+>/ingredients/""" + "$" + """ingredient<.+>""",
+      Seq(classOf[play.mvc.Http.Request], classOf[Integer]),
+      "PATCH",
+      this.prefix + """recipe/""" + "$" + """id<[^/]+>/ingredient""",
       """#########################################################################################
-12-Añadir ingredientes a una receta
+12-Añadir ingrediente a una receta por id
 #########################################################################################""",
       Seq()
     )
@@ -452,9 +452,9 @@ class Routes(
   
     // @LINE:49
     case controllers_RecipeController_retrieveAllByValoration8_route(params@_) =>
-      call(params.fromPath[Integer]("point", None)) { (point) =>
+      call(params.fromPath[Integer]("puntuation", None)) { (puntuation) =>
         controllers_RecipeController_retrieveAllByValoration8_invoker.call(
-          req => RecipeController_1.retrieveAllByValoration(req, point))
+          req => RecipeController_1.retrieveAllByValoration(req, puntuation))
       }
   
     // @LINE:54
@@ -473,16 +473,16 @@ class Routes(
   
     // @LINE:64
     case controllers_RecipeController_valorateRecipe11_route(params@_) =>
-      call(params.fromPath[Integer]("id", None), params.fromPath[Integer]("point", None)) { (id, point) =>
+      call(params.fromPath[Integer]("id", None)) { (id) =>
         controllers_RecipeController_valorateRecipe11_invoker.call(
-          req => RecipeController_1.valorateRecipe(req, id, point))
+          req => RecipeController_1.valorateRecipe(req, id))
       }
   
     // @LINE:69
     case controllers_RecipeController_inputIngredientsRecipe12_route(params@_) =>
-      call(params.fromPath[Integer]("id", None), params.fromPath[String]("ingredient", None)) { (id, ingredient) =>
+      call(params.fromPath[Integer]("id", None)) { (id) =>
         controllers_RecipeController_inputIngredientsRecipe12_invoker.call(
-          req => RecipeController_1.inputIngredientsRecipe(req, id, ingredient))
+          req => RecipeController_1.inputIngredientsRecipe(req, id))
       }
   
     // @LINE:74
