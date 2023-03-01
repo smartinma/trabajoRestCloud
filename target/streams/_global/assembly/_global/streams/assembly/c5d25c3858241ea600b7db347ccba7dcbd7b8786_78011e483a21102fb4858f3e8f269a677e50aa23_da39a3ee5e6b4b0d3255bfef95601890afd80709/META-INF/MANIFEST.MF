@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: default
+Build-Jdk: 11
+Implementation-Title: Extended StAX API
+Implementation-Version: 1.8.1
+Implementation-Vendor-Id: org.jvnet.staxex
+Implementation-Vendor: Eclipse Foundation
+Implementation-URL: https://projects.eclipse.org/projects/ee4j/stax-ex
+Bnd-LastModified: 1545923610249
+Bundle-Description: Extensions to JSR-173 StAX API.
+Bundle-DocURL: https://www.eclipse.org
+Bundle-License: http://www.eclipse.org/org/documents/edl-v10.php
+Bundle-ManifestVersion: 2
+Bundle-Name: Extended StAX API
+Bundle-SymbolicName: org.jvnet.staxex.stax-ex
+Bundle-Vendor: Eclipse Foundation
+Bundle-Version: 1.8.1
+Export-Package: org.jvnet.staxex;uses:="javax.activation,javax.xml.names
+ pace,javax.xml.stream";version="1.8.1",org.jvnet.staxex.util;uses:="jav
+ ax.xml.bind.attachment,javax.xml.namespace,javax.xml.stream,org.w3c.dom
+ ";version="1.8.1"
+Implementation-Build-Id: 1.8.1-acf3f94, 2018-12-27T15:12:49+0000
+Import-Package: javax.activation;version="[1.2,2)",javax.xml.bind.attach
+ ment;version="[2.3,3)",javax.xml.namespace,javax.xml.stream,org.jvnet.s
+ taxex,org.w3c.dom
+Tool: Bnd-3.5.0.201709291849
+
