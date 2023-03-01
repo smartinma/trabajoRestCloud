@@ -2,33 +2,42 @@ package views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
-import models.RecipeAvatar;
+import models.RecipeIngredient;
+import models.RecipeTitle;
 import models.RecipeModel;
-import org.hibernate.validator.constraints.URL;
+import models.RecipeValoration;
 import play.data.validation.Constraints;
 import play.libs.Json;
 
+import javax.validation.Constraint;
 import javax.validation.constraints.NotBlank;
 
 
 public class RecipeResource {
-    @JsonProperty("nombre")
-    @Constraints.Required
-    @NotBlank(message="Nombre vacío")
+
+    //Parámetros de la receta: nombre, tiempo maximo de elaboración, titulo y tipo de receta
+    @JsonProperty("name")
+    @Constraints.Required(message = "required")
+    @NotBlank(message = "blank")
     private String name;
 
-    @Constraints.Required
-    @Constraints.Min(18)
-    private Integer age;
+    @JsonProperty("time")
+    @Constraints.Required(message = "required")
+    @Constraints.Min(1)
+    private Integer time;
 
-    @URL
-    @Constraints.Required
-    @JsonProperty("avatar_url")
-    private String avatarUrl;
+    @JsonProperty("title")
+    @Constraints.Required(message = "required")
+    @NotBlank(message = "blank")
+    private String title;
+
+    @JsonProperty("typeFood")
+    @Constraints.Required(message = "required")
+    @NotBlank(message = "blank")
+    private String typeFood;
 
 
     //Contructores
-
     public RecipeResource(){
         super();
     }
@@ -37,15 +46,43 @@ public class RecipeResource {
 
 
         this.name = recipeModel.getName();
-        this.age = recipeModel.getAge();
+        this.time = recipeModel.getTime();
+        this.typeFood = recipeModel.getTypeFood();
 
-        RecipeAvatar ua = recipeModel.getAvatar();
+        RecipeTitle rt = recipeModel.getTitle();
 
-        if(ua != null){
-            this.avatarUrl= ua.getUrl();
+        if(rt != null){
+            this.title = rt.getTitle().replaceAll(" ","_");
         }
+
+
     }
 
+    //Conversion a JSON
+    public JsonNode toJson() {
+
+        return Json.toJson(this);
+
+    }
+
+    //Conversion a modelo
+    public RecipeModel toModel() {
+
+        RecipeModel rm = new RecipeModel();
+        RecipeTitle rt = new RecipeTitle();
+
+        rm.setName(this.name.toLowerCase());
+        rm.setTime(this.time);
+        rm.setTypeFood(this.typeFood.toLowerCase());
+
+        rt.setTitle(this.title.toLowerCase().replaceAll(" ","_"));
+        rm.setTitle(rt);
+
+        return rm;
+
+    }
+
+    //Getters y setters
     public String getName() {
 
         return name;
@@ -56,43 +93,31 @@ public class RecipeResource {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public Integer getTime() {
 
-        return age;
+        return time;
     }
 
-    public void setAge(Integer age) {
+    public void setTime(Integer time) {
 
-        this.age = age;
+        this.time = time;
     }
 
-    public JsonNode toJson() {
 
-        return Json.toJson(this);
-
+    public String getTitle() {
+        return title;
     }
 
-    public RecipeModel toModel() {
-
-        RecipeModel u = new RecipeModel();
-        RecipeAvatar ua = new RecipeAvatar();
-
-        u.setName(this.name);
-        u.setAge(this.age);
-        ua.setUrl(this.avatarUrl);
-
-        u.setAvatar(ua);
-
-        return u;
-
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getTypeFood() {
+        return typeFood;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setTypeFood(String typeFood) {
+        this.typeFood = typeFood;
     }
 }
 

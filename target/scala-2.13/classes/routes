@@ -44,12 +44,12 @@ GET    /recipes/time/:time    controllers.RecipeController.retrieveAllByTime(req
 GET    /recipes/title/:title    controllers.RecipeController.retrieveByTitle(req: Request, title: String)
 
 ##########################################################################################
-#8-Obtener una receta por su valoracion
+#8-Obtener una receta por su puntuacion
 ##########################################################################################
-GET    /recipes/puntuation/:point    controllers.RecipeController.retrieveAllByValoration(req: Request, point: Integer)
+GET    /recipes/puntuation/:puntuation    controllers.RecipeController.retrieveAllByValoration(req: Request, puntuation: Integer)
 
 ##########################################################################################
-#9-Actualizar una receta por id con body JSON
+#9-Actualizar una receta por id
 ##########################################################################################
 PUT    /recipe/:id    controllers.RecipeController.update(req: Request, id: Integer)
 
@@ -59,14 +59,14 @@ PUT    /recipe/:id    controllers.RecipeController.update(req: Request, id: Inte
 DELETE  /recipe/:id    controllers.RecipeController.delete(req: Request, id: Integer)
 
 ##########################################################################################
-#11-Puntuar una receta por su id
+#11-Puntuar una receta por id
 ##########################################################################################
-PUT     /recipe/:id/point/:point    controllers.RecipeController.valorateRecipe(req: Request, id: Integer, point: Integer)
+PATCH     /recipe/:id/puntuation   controllers.RecipeController.valorateRecipe(req: Request, id: Integer)
 
 ##########################################################################################
-#12-Añadir ingredientes a una receta
+#12-Añadir ingrediente a una receta por id
 ##########################################################################################
-PUT     /recipe/:id/ingredients/*ingredient    controllers.RecipeController.inputIngredientsRecipe(req: Request, id: Integer, ingredient: String)
+PATCH     /recipe/:id/ingredient    controllers.RecipeController.inputIngredientsRecipe(req: Request, id: Integer)
 
 ##########################################################################################
 #13-Listar todas las recetas

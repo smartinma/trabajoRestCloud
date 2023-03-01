@@ -1,32 +1,53 @@
 package views;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import models.RecipeIngredient;
 import models.RecipeModel;
-import models.RecipePassword;
+import models.RecipeValoration;
 import play.data.validation.Constraints;
 
 import javax.validation.constraints.NotBlank;
 
 public class RecipeInputResource extends RecipeResource {
-    @Constraints.Required
-    @NotBlank
-    @Constraints.MinLength(8)
-    private String password;
 
-    public String getPassword() {
-        return password;
+    @Constraints.Min(1)
+    @Constraints.Max(5)
+    @JsonProperty("puntuation")
+    private Integer puntuation;
+
+
+    @JsonProperty("ingredients")
+    private String ingredient;
+
+    //Getters y setters
+    public Integer getPuntuation() {
+        return puntuation;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPuntuation(Integer puntuation) {
+        this.puntuation = puntuation;
     }
 
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    //Conversion a modelo
     @Override
     public RecipeModel toModel() {
         RecipeModel u = super.toModel();
-        RecipePassword up = new RecipePassword();
+        RecipeValoration up = new RecipeValoration();
+        RecipeIngredient ri = new RecipeIngredient();
 
-        up.setPasswordHash(this.password);
-        u.addPassword(up);
+        up.setPuntuation(this.puntuation);
+        ri.setNombreIngrediente(this.ingredient);
+
+        u.addValoration(up);
+        u.addIngredient(ri);
 
 
         return u;
