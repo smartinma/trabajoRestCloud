@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: Maven Jar Plugin 3.2.0
+Build-Jdk-Spec: 17
+build-version: 12.16.1
+Premain-Class: io.ebean.enhance.Transformer
+Agent-Class: io.ebean.enhance.Transformer
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+
