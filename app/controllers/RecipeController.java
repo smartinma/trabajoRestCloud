@@ -229,13 +229,13 @@ public class RecipeController extends Controller{
 
     }
 
-    @Cached(key="recipe-view", duration = 5)
+    @Cached(key="recipe-"+"${id}"+"view", duration = 5)
     public Result retrieveById(Http.Request req, Integer id) {
 
         Messages messages = messagesApi.preferred(req);
 
         RecipeModel rm;
-        Optional<Object> optRecipe = cache.get("recipe");
+        Optional<Object> optRecipe = cache.get("recipe-"+id);
 
         //Función cacheada, primero buscamos en la caché esa key por si se encuentra anteriormente, si no buscamos en el modelo
         //Si se realiza la operación antes de 5s de otra con esa key anterior se obtendrá el valor cacheado
@@ -248,7 +248,7 @@ public class RecipeController extends Controller{
             String msg2 = messages.at("notCached");
             System.out.println(msg2);
             rm = RecipeModel.findById(Long.valueOf(id));
-            cache.set("recipe", rm);
+            cache.set("recipe-"+id, rm);
         }
 
         if (rm == null) {
