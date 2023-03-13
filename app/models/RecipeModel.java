@@ -3,30 +3,70 @@ package models;
 
 import io.ebean.Finder;
 import io.ebean.Model;
+import jdk.jfr.Name;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class RecipeModel extends Model {
     private static final Finder<Long,RecipeModel> find = new Finder<>(RecipeModel.class);
 
     @Id
-    private Long id;
+    @Name("recipe_id")
+    public Long id;
 
-    private String name;
-    private Integer age;
-    private String type;
-    private Integer time;
+    /*PARAMETROS DE LA RECETA:
+        -Nombre General: nombre general que se le da a la receta, por ejemplo cocido.
+        -Tipo de Receta: tipo de receta para el consumidor, si es vegana, vegetariana, con alergenos...etc
+        -Tiempo de Preparación: tiempo máximo estimado de preparación de la receta
+        *Relaciones:
+            -Título único (1-1): nombre único de la receta, no hay dos iguales, por ejemplo cocido madrileño.
+            -Valoraciones (1-N): valoraciones/puntuaciones de la receta
+            -Ingredientes (N-M): ingredientes que componen las recetas, ingredientes únicos pero comunes
+     */
 
+    public String name;
+    public Integer time;
+    public String typeFood;
 
+    //Relación 1-1, cada receta tiene un único título
     @OneToOne(cascade = CascadeType.ALL)
-    private RecipeAvatar avatar;
+    public RecipeTitle title;
 
+    //Relación 1-N, cada receta tiene valoraciones unicas en cada receta
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "parentRecipe")
-    private List<RecipePassword> passwords;
+    public List<RecipeValoration> valorations;
 
+    //Relación N-M, cada receta tiene ingredientes que pueden ser comunes con otras recetas
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<RecipeIngredient> ingredients;
+
+    //Constructores
+    public RecipeModel(){}
+
+    public RecipeModel(Long id, String name, Integer time, String typeFood, RecipeTitle title, List<RecipeValoration> valorations, List<RecipeIngredient> ingredients) {
+        this.id = id;
+        this.name = name;
+        this.time = time;
+        this.typeFood = typeFood;
+        this.title = title;
+        this.valorations = valorations;
+        this.ingredients = ingredients;
+    }
+
+    public RecipeModel(String dbName, Long id, String name, Integer time, String typeFood, RecipeTitle title, List<RecipeValoration> valorations, List<RecipeIngredient> ingredients) {
+        super(dbName);
+        this.id = id;
+        this.name = name;
+        this.time = time;
+        this.typeFood = typeFood;
+        this.title = title;
+        this.valorations = valorations;
+        this.ingredients = ingredients;
+    }
 
     //Metodos de acceso (base de datos) - Búsquedas
     //Por ID
@@ -36,46 +76,64 @@ public class RecipeModel extends Model {
     }
 
     //Por NOMBRE
-    public static RecipeModel findByName(String name) {
+    public static List<RecipeModel> findByName(String name) {
 
         return find.query()
                 .where()
-                .eq("name", name)
+                .eq("name", name.toLowerCase())
+                .findList();
+    }
+
+    //Por TITULO
+    public static RecipeModel findByTitle(String recipeTitle) {
+
+        return find.query()
+                .where()
+                .eq("title.title", recipeTitle.toLowerCase())
+                .orderBy("title")
                 .findOne();
     }
 
-    /*
-    //Por TIPO (vegano, vegetariano, carnivoro, omnivoro...)
-    public static RecipeModel findByType(String type) {
+    //Por TIPO
+    public static List<RecipeModel> findByType(String typeFood) {
 
         return find.query()
                 .where()
-                .eq("type", type)
-                .findOne();
+                .eq("typeFood", typeFood.toLowerCase())
+                .orderBy("id")
+                .findList();
     }
 
     //Por TIEMPO DE PREPARACION MAXIMO
-    public static RecipeModel findByTime(Integer time) {
+    public static List<RecipeModel> findByTime(Integer time) {
 
-        return find.query()
+        return  find.query()
                 .where()
                 .le("time", time)
-                .orderBy("name")
-                .setMaxRows(25)
-                .setFirstRow(0)
+                .orderBy("time")
                 .findList();
     }
-    */
 
-
-    public static List<RecipeModel> findGreaterThanAge(Integer age) {
+    //Por PUNTUACIÓN
+    public static List<RecipeModel> findByValoration(Integer point) {
 
         return find.query()
+                .fetch("valorations")
                 .where()
-                .gt("age", age)
+                .ge("valorations.puntuation", point)
                 .orderBy("name")
-                .setMaxRows(25)
-                .setFirstRow(0)
+                .findList();
+    }
+
+
+    //Por INGREDIENTE
+    public static List<RecipeModel> findByIngredient(String ingredient) {
+
+        return find.query()
+                .fetch("ingredients")
+                .where()
+                .eq("ingredients.nombreIngrediente", ingredient.toLowerCase())
+                .orderBy("name")
                 .findList();
 
     }
@@ -92,7 +150,7 @@ public class RecipeModel extends Model {
         find.deleteById(Long.valueOf(id));
     }
 
-    //Getter y setters
+    //Getters y setters
     public Long getId() {
         return id;
     }
@@ -109,37 +167,68 @@ public class RecipeModel extends Model {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public Integer getTime() {
+        return time;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
-    public RecipeAvatar getAvatar() {
-        return avatar;
+    public RecipeTitle getTitle() {
+        return title;
     }
 
-    public void setAvatar(RecipeAvatar avatar) {
-        this.avatar = avatar;
-        avatar.setParentRecipe(this);
+    public void setTitle(RecipeTitle title) {
+        this.title = title;
+        title.setParentRecipe(this);
     }
 
-    public List<RecipePassword> getPasswords() {
-        return passwords;
+    public List<RecipeValoration> getValorations() {
+        return valorations;
     }
 
-    public void setPasswords(List<RecipePassword> passwords) {
-        this.passwords = passwords;
+    public void setValorations(List<RecipeValoration> valorations) {
+        this.valorations = valorations;
     }
 
-    public void addPassword(RecipePassword recipePassword){
-        if(this.passwords == null){
-            this.passwords = new ArrayList<>();
+    public String getTypeFood() {
+        return typeFood;
+    }
+
+    public void setTypeFood(String typeFood) {
+        this.typeFood = typeFood;
+    }
+
+
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+       this.ingredients = ingredients;
+    }
+
+    //Metodos de adicción de relacion/adiccion de modelos
+    public void addValoration(RecipeValoration recipeValoration){
+        if(this.valorations == null){
+            this.valorations = new ArrayList<>();
         }
 
-        this.passwords.add(recipePassword);
-        recipePassword.setParentRecipe(this);
+        this.valorations.add(recipeValoration);
+        recipeValoration.setParentRecipe(this);
     }
+
+
+    public void addIngredient(RecipeIngredient recipeIngredient){
+        ArrayList<RecipeModel> tmp = new ArrayList<>();
+        tmp.add(this);
+        if(this.ingredients == null){
+            this.ingredients = new ArrayList<>();
+        }
+
+        this.ingredients.add(recipeIngredient);
+        recipeIngredient.setParentRecipe(tmp);
+    }
+
 }

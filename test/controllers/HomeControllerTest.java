@@ -14,6 +14,8 @@ import static play.test.Helpers.route;
 
 public class HomeControllerTest extends WithApplication {
 
+
+    //Test funcional de la clase principal inicial de la aplicacion
     @Override
     protected Application provideApplication() {
         return new GuiceApplicationBuilder().build();
