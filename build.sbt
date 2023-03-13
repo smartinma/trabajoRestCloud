@@ -16,7 +16,6 @@ libraryDependencies += "org.fusesource.jansi" % "jansi" % "1.17.1"
 libraryDependencies += "com.typesafe.play" %% "play-test" % "2.8.2" % Test
 libraryDependencies += "org.postgresql" % "postgresql" % "42.3.1"
 
-
 maintainer := "mhernandezco.inf@upsa.es"
 
 
